@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+@{ 
+    var user = Session["User"] as NongSanDungHa.Models.admin_account;
+}
+<h2>Xin chào @user.admin_username</h2>
+
