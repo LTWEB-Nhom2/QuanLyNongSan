@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
-    
+
 namespace NongSanDungHa.Models.ADO
 {
-    public class user_order  
+    public class user_order
     {
         public user_order()
         {
@@ -63,10 +65,10 @@ namespace NongSanDungHa.Models.ADO
         [Range(0, int.MaxValue, ErrorMessage = "Tổng tiền không hợp lệ")]
         public decimal? order_total_value { get; set; }
 
-        [Required(ErrorMessage ="Không được để trống")]
+        [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Phương thức thanh toán")]
-        [StringLength (20)]
-        [RegularExpression("@^[^0-9]*$",ErrorMessage = "Không được chứa kí tự số")]
+        [StringLength(20)]
+        [RegularExpression("@^[^0-9]*$", ErrorMessage = "Không được chứa kí tự số")]
         public string payments { get; set; }
     }
     public partial class ListUser_Order
@@ -199,5 +201,74 @@ namespace NongSanDungHa.Models.ADO
             con.Close();
         }
 
+        public int GetTotalOrders()
+        {
+            SqlConnection con = db.GetConnection();
+
+            try
+            {
+                con.Open();
+
+                string sql = "SELECT COUNT(*) FROM user_order";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                int totalOrders = (int)cmd.ExecuteScalar();
+
+                return totalOrders;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public decimal GetMonthlyRevenue()
+        {
+            SqlConnection con = db.GetConnection();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("GetCurrentMonthRevenue", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                decimal monthlyRevenue = (decimal)cmd.ExecuteScalar();
+                monthlyRevenue = Math.Round(monthlyRevenue, 0);
+                return monthlyRevenue;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public decimal GetYearlyRevenue()
+        {
+            SqlConnection con = db.GetConnection();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("GetCurrentYearlyRevenue", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                decimal yearyRevenue = (decimal)cmd.ExecuteScalar();
+                yearyRevenue = Math.Round(yearyRevenue, 0);
+                return yearyRevenue;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

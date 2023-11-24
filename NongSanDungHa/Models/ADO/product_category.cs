@@ -123,6 +123,30 @@ namespace NongSanDungHa.Models.ADO
             cmd.Dispose();
             con.Close();
         }
+
+        public int GetTotalCategories()
+        {
+            SqlConnection con = db.GetConnection();
+
+            try
+            {
+                con.Open();
+                string sql = "SELECT COUNT(*) FROM product_category";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                int totalCategories = (int)cmd.ExecuteScalar();
+
+                return totalCategories;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 
 }

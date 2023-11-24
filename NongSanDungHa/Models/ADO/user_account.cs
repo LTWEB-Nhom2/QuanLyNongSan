@@ -14,7 +14,7 @@ namespace NongSanDungHa.Models.ADO
 
         [Key]
         [Display(Name = "ID")]
-       
+
         public int user_account_id { get; set; }
 
         [Display(Name = "Tên tài khoản")]
@@ -232,6 +232,31 @@ namespace NongSanDungHa.Models.ADO
             cmd.ExecuteNonQuery();
             cmd.Dispose();
             con.Close();
+        }
+
+        public int TotalGetTotalAccounts()
+        {
+            SqlConnection con = db.GetConnection();
+
+            try
+            {
+                con.Open();
+
+                string sql = "SELECT COUNT(*) FROM user_account";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                int totalAccounts = (int)cmd.ExecuteScalar();
+
+                return totalAccounts;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
 

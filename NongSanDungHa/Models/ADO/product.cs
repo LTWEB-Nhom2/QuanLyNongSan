@@ -23,7 +23,7 @@ namespace NongSanDungHa.Models.ADO
         public int? product_category_id { get; set; }
         [StringLength(255, ErrorMessage = "Vui lòng nhập tối đa 255 ký tự")]
         [Display(Name = "Tên Sản Phẩm")]
-      
+
         [Required(ErrorMessage = "Bạn cần nhập vào tên sản phẩm")]
         public string product_name { get; set; }
 
@@ -174,6 +174,34 @@ namespace NongSanDungHa.Models.ADO
             cmd.ExecuteNonQuery();
             cmd.Dispose();
             con.Close();
+        }
+
+        public int TotalProducts()
+        {
+            SqlConnection con = db.GetConnection();
+
+            try
+            {
+                con.Open();
+
+                string sql = "SELECT COUNT(*) FROM product";
+                SqlCommand cmd = new SqlCommand(sql, con);
+
+                // Thực hiện truy vấn và trả về giá trị
+                int totalProducts = (int)cmd.ExecuteScalar();
+
+                return totalProducts;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý exception nếu có
+                Console.WriteLine(ex.Message);
+                return -1; // Hoặc trả về một giá trị đặc biệt để biểu thị lỗi
+            }
+            finally
+            {
+                con.Close(); // Đảm bảo rằng kết nối được đóng ngay cả khi có lỗi xảy ra
+            }
         }
     }
 }
