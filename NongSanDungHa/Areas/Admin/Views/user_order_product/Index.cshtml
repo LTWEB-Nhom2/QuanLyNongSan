@@ -6,13 +6,23 @@
 }
 
 <h2>Đơn hàng</h2>
-
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/Admin/user_order_product/SearchResult" method="get">
+    <div class="input-group">
+        <input type="search" class="form-control bg-light border-0 small" placeholder="Search by user order product id"
+               aria-label="Search" aria-describedby="basic-addon2" name="searchKey">
+        <div class="input-group-append">
+            <button class="btn btn-primary" style="background-color: #52a851;" type="submit" name="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
 <p>
     @Html.ActionLink("Thêm mới", "CreateNew")
 </p>
 <p>
 
-    Lượt review: @ViewBag.TotalUserOrderProduct
+    Đơn hàng: @ViewBag.TotalUserOrderProduct
 </p>
 <table class="table">
     <tr>
@@ -28,7 +38,7 @@
         <th>
             @Html.DisplayNameFor(model => model.order_product_amount)
         </th>
-       
+
         <th></th>
     </tr>
 
@@ -49,7 +59,7 @@
             </td>
 
             <td>
-                @Html.ActionLink("Sửa", "Edit", new { id = item.user_order_id , product_id = item.product_id}) |
+                @Html.ActionLink("Sửa", "Edit", new { id = item.user_order_id, product_id = item.product_id }) |
                 @Html.ActionLink("Chi tiết", "Detail", new { id = item.user_order_id, product_id = item.product_id }) |
                 @Html.ActionLink("Xóa", "Delete", new { id = item.user_order_id, product_id = item.product_id })
             </td>

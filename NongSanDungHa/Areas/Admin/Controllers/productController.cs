@@ -68,5 +68,12 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             list.delete(id);
             return RedirectToAction("Index");
         }
+        public ActionResult SearchResult(string searchKey)
+        {
+            ListProduct list = new ListProduct();
+            List<product> lstSearch = list.search(searchKey).ToList();
+            ViewBag.searchKey = searchKey;
+            return View(lstSearch);
+        }
     }
 }

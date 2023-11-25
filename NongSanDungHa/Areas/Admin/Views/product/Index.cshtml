@@ -1,17 +1,27 @@
-﻿@model PagedList<NongSanDungHa.Models.ADO.product>
+﻿@model IEnumerable<NongSanDungHa.Models.ADO.product>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
-@using PagedList;
-@using PagedList.Mvc;
 
 <h2>Sản Phẩm</h2>
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/Admin/product/SearchResult" method="get">
+    <div class="input-group">
+        <input type="search" class="form-control bg-light border-0 small" placeholder="Search by name"
+               aria-label="Search" aria-describedby="basic-addon2" name="searchKey">
+        <div class="input-group-append">
+            <button class="btn btn-primary" style="background-color: #52a851;" type="submit" name="submit">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
 
 <p>
     @Html.ActionLink("Thêm mới", "CreateNew")
 </p>
+
 <p>
 
     Tổng số sản phẩm: @ViewBag.TotalProduct
@@ -22,17 +32,17 @@
             @Html.DisplayName("STT")
         </th>
         <th>
-            @Html.DisplayName("ID Sản Phẩm")
+            @Html.DisplayNameFor(model => model.product_category_id)
         </th>
         <th>
-            @Html.DisplayName("ID Loại Sản Phẩm")
+            @Html.DisplayNameFor(model => model.product_name)
         </th>
 
         <th>
-            @Html.DisplayName("Hình Ảnh")
+            @Html.DisplayNameFor(model => model.product_thumbnail_image)
         </th>
         <th>
-            @Html.DisplayName("Giá Bán")
+            @Html.DisplayNameFor(model => model.product_price)
         </th>
         <th></th>
     </tr>
@@ -66,8 +76,3 @@
     }
 
 </table>
-<nav aria-label="Page navigation example" style="display: flex;justify-content:center;align-items:center">
-    <ul class="pagination ">
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item" } })
-    </ul>
-</nav>
