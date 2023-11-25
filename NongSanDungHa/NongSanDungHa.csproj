@@ -148,6 +148,7 @@
     <Compile Include="Areas\Admin\Controllers\productController.cs" />
     <Compile Include="Areas\Admin\Controllers\product_imageController.cs" />
     <Compile Include="Areas\Admin\Controllers\product_reviewController.cs" />
+    <Compile Include="Areas\Admin\Controllers\testController.cs" />
     <Compile Include="Areas\Admin\Controllers\user_orderController.cs" />
     <Compile Include="Areas\Admin\Controllers\user_order_productController.cs" />
     <Compile Include="common\MailHelper.cs" />
@@ -1210,6 +1211,7 @@
     <Content Include="Areas\Admin\Views\product_review\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\user_order\Index.cshtml" />
     <Content Include="Areas\Admin\Views\user_order\CreateNew.cshtml" />
+    <Content Include="Areas\Admin\Views\user_order\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\user_order_product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\user_order_product\CreateNew.cshtml" />
     <Content Include="Areas\Admin\Views\user_order_product\Detail.cshtml" />
@@ -1235,16 +1237,12 @@
       <LastGenOutput>DBNongSanDungHa.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-<<<<<<< Updated upstream
     <Content Include="Areas\Admin\Views\product_image\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\product\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\Category\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\user_order_product\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\product_review\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\user_order\SearchResult.cshtml" />
-=======
-    <Content Include="Areas\Admin\Views\user_order\Detail.cshtml" />
->>>>>>> Stashed changes
     <None Include="Models\DBNongSanDungHa.dbml.layout">
       <DependentUpon>DBNongSanDungHa.dbml</DependentUpon>
     </None>
@@ -1290,6 +1288,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
