@@ -67,6 +67,33 @@ namespace NongSanDungHa.Models.ADO
             return list;
 
         }
+        public List<user_order_product> getSoSanPham(int user_order_ID)
+        {
+            string sql;
+
+            sql = "Select * from user_order_product where user_order_id = @user_order_id";
+
+
+            List<user_order_product> list = new List<user_order_product>();
+            SqlConnection con = db.GetConnection();
+            con.Open();
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.Add("@user_order_id", user_order_ID);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                user_order_product item = new user_order_product();
+                item.user_order_id = int.Parse(dr["user_order_id"].ToString());
+                item.product_id = int.Parse(dr["product_id"].ToString());
+                item.product_name = dr["product_name"].ToString();
+                item.order_product_amount = double.Parse(dr["order_product_amount"].ToString());
+                list.Add(item);
+            }
+            con.Close();
+            return list;
+
+        }
         public List<user_order_product> Details(int id, int product_id)
         {
             string sql;

@@ -1210,7 +1210,6 @@
     <Content Include="Areas\Admin\Views\product_review\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\user_order\Index.cshtml" />
     <Content Include="Areas\Admin\Views\user_order\CreateNew.cshtml" />
-    <Content Include="Areas\Admin\Views\user_order\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\user_order_product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\user_order_product\CreateNew.cshtml" />
     <Content Include="Areas\Admin\Views\user_order_product\Detail.cshtml" />
@@ -1236,12 +1235,16 @@
       <LastGenOutput>DBNongSanDungHa.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+<<<<<<< Updated upstream
     <Content Include="Areas\Admin\Views\product_image\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\product\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\Category\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\user_order_product\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\product_review\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\user_order\SearchResult.cshtml" />
+=======
+    <Content Include="Areas\Admin\Views\user_order\Detail.cshtml" />
+>>>>>>> Stashed changes
     <None Include="Models\DBNongSanDungHa.dbml.layout">
       <DependentUpon>DBNongSanDungHa.dbml</DependentUpon>
     </None>
