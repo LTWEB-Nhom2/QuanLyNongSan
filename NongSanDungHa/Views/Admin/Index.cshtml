@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <style>
+        .ads-item {
+            width: 100px;
+        }
+
+        .left {
+            float: left
+        }
+
+        .right {
+            float: right;
+        }
+
+        .title-1-container {
+            background-color: #52a851;
+            padding: 10px;
+            margin: auto;
+        }
+
+        .title-1-content {
+            color: white;
+            border: 1px solid;
+            padding: 20px;
+            font-size: 20px;
+        }
+
+        .discount-h2 {
+            font-size: 15px;
+        }
+
+        .mod-title {
+            margin: 2px 0px 2px 0px;
+        }
+    </style>
+
+}
+@using NongSanDungHa.Models;
+@{
+    var username = Session["Username"];
+}
+<h2>Welcome @username</h2>
+

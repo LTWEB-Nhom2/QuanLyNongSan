@@ -2,9 +2,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-
-<style>
+    <style>
         .ads-item {
             width: 100px;
         }
@@ -37,9 +35,10 @@
         .mod-title {
             margin: 2px 0px 2px 0px;
         }
-    </style>}
+    </style>
 
 }
+
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -115,70 +114,93 @@
                 }
             </div>
         </div>
-        @{
-            foreach (product_category category in ViewBag.Category)
-            {
-                <div class="col-md-12 d-flex">
-                    <div class="row w-100">
-                        <div class="col-md-3">
-                            @Html.ActionLink(category.product_category_name, "ShowCategory", new { id = category.product_category_id }, new { @class = "btn", style = "border-radius: 0px;background-color: #2aa745;color: white; font-weight:bold;text-transform: uppercase;" })
 
-                        </div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-5 text-end">
-                            @Html.ActionLink("+ Xem Tất Cả", "ShowCategory", new { id = category.product_category_id }, new { @class = "btn", style = "background-color: #52a851;color:white", role = "button" })
-
-                        </div>
-                    </div>
-
-
+        <div class="col-md-12 d-flex">
+            <div class="row w-100">
+                <div class="col-md-3">
+                   @Html.ActionLink("Rau Củ Sạch Đà Lạt","ShowCategory",new {id = 1},new {@class="btn",style= "border-radius: 0px;background-color: #2aa745;color: white; font-weight:bold;text-transform: uppercase;" })
+                    
                 </div>
-                <div class="col-md-12">
-                    <hr style="color: green; border: 1px solid #2aa745" />
+                <div class="col-md-4"></div>
+                <div class="col-md-5 text-end">
+                    @Html.ActionLink("+ Xem Tất Cả","ShowCategory", new {id=1}, new {@class="btn",style= "background-color: #52a851;color:white",role="button" })
+                    
                 </div>
-                <div class="col-md-12 mb-5">
-                    <div class="row">
-                        @{
-                                        int i = 1;
-                            foreach (product item in ViewBag.products)
-                            {
-
-                                if (item.product_category_id == category.product_category_id && i<9)
-                                {
-                                    i++;
-                                    <div class="col-md-3">
-                                                                <div class="card mb-3" style="width: 19rem">
-                                                                    
-                                                                    <a href="~/Home/ShowDetailProduct/@item.product_id?product_category_id=@item.product_category_id">  <img style="height: 265px" src="@item.product_thumbnail_image" class="card-img-top" alt="..."></a>
-                                                                    <div class="card-body">
-                                                                        <h5 class="card-title text-center" style="height:48px">@Html.ActionLink(item.product_name, "ShowDetailProduct", new { id = item.product_id, product_category_id = item.product_category_id })</h5>
-                                                                        <p class="card-text text-center" style="font-weight: 500">HCM: @item.product_price đ</p>
-                                                                        @{
-                                                                         
-                                                                         
-                                                                                @Html.ActionLink("Mua Ngay", "ShowDetailProduct", new { Controller = "Home", id = item.product_id, product_category_id = item.product_category_id }, new { @class = "btn btn-primary", style = "width: 100%; background-color: #52a851; border-color: white" })
-                                                                            
-
-                                                                        }
+            </div>
 
 
-                                                                    </div>
-                                                                </div>
+        </div>
+        <div class="col-md-12">
+            <hr style="color: green; border: 1px solid #2aa745" />
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                @{
+                    foreach (product item in ViewBag.RauCuSachDaLat)
+                    {
+                        if (item.product_id < 9)
+                        {
+
+                            <div class="col-md-3">
+                                <div class="card mb-3" style="width: 19rem">
+                                    <img style="height: 265px" src="@item.product_thumbnail_image" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center" style="height:48px">@Html.ActionLink(item.product_name, "ShowDetailProduct", new { id = item.product_id, product_category_id = item.product_category_id })</h5>
+                                        <p class="card-text text-center" style="font-weight: 500">HCM: @item.product_price đ</p>
+                                        @Html.ActionLink("Mua Ngay", "ShowDetailProduct", new { id = item.product_id, product_category_id = item.product_category_id }, new {@class="btn btn-primary", style= "width: 100%; background-color: #52a851; border-color: white" })
+                                        
                                     </div>
-                                }
-                            }
+                                </div>
+                            </div>
                         }
+                    }
+                }
 
-                    </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 d-flex">
+            <div class="row w-100">
+                <div class="col-md-3">
+                    @Html.ActionLink("Rau Củ Sạch", "ShowCategory", new { id = 2 }, new { @class = "btn", style = "border-radius: 0px;background-color: #2aa745;color: white; font-weight:bold;text-transform: uppercase;" })
+
                 </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-5 text-end">
+                    @Html.ActionLink("+ Xem Tất Cả", "ShowCategory", new { id = 2 }, new { @class = "btn", style = "background-color: #52a851;color:white", role = "button" })
 
-            }
-        }
+                </div>
+            </div>
 
 
+        </div>
+        <div class="col-md-12">
+            <hr style="color: green; border: 1px solid #2aa745" />
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                @{
+                    foreach (product item in ViewBag.RauCuSach)
+                    {
+                        if (item.product_id < 18)
+                        {
+                            <div class="col-md-3">
+                               <div class="card mb-3" style="width: 19rem">
+                                    <img style="height: 265px" src="@item.product_thumbnail_image" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        
+                                        <h5 class="card-title text-center" style="height:48px">@Html.ActionLink(item.product_name, "ShowDetailProduct", new { id = item.product_id, product_category_id = item.product_category_id })</h5>
+                                        <p class="card-text text-center" style="font-weight: 500">HCM: @item.product_price đ</p>
+                                        <a href="#" style="width: 100%; background-color: #52a851; border-color: white " class="btn btn-primary">Mua Ngay</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
 
-
-      
+            </div>
+        </div>
 
 
 
