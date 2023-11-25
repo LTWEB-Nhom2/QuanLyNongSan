@@ -1,84 +1,70 @@
-﻿@model NongSanDungHa.Models.ADO.user_order
-
+﻿@model IEnumerable<NongSanDungHa.Models.ADO.user_order_product>
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
-
-<h2>Detail</h2>
+<h2>Chi tiết</h2>
+<h2>Đơn Hàng</h2>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.user_order_id)
+            @Html.DisplayName("STT")
         </th>
-        <td>
-            @Html.DisplayFor(model => model.user_order_id)
-        </td>
         <th>
-            @Html.DisplayNameFor(model => model.user_account_id)
+            @Html.DisplayNameFor(model => model.product_name)
         </th>
-        <td>
-            @Html.DisplayFor(model => model.user_account_id)
-        </td>
         <th>
-            @Html.DisplayNameFor(model => model.order_time)
+            @Html.DisplayName("Hình ảnh")
         </th>
-        <td>
-            @Html.DisplayFor(model => model.order_time)
-        </td>
         <th>
-            @Html.DisplayNameFor(model => model.user_order_buyer_name)
+            @Html.DisplayName("Giá")
         </th>
-        <td>
-            @Html.DisplayFor(model => model.user_order_buyer_name)
-        </td>
         <th>
-            @Html.DisplayNameFor(model => model.user_order_address)
+            @Html.DisplayNameFor(model => model.order_product_amount)
         </th>
-        <td>
-            @Html.DisplayFor(model => model.user_order_address)
-        </td>
-        <th>
-            @Html.DisplayNameFor(model => model.user_order_email)
-        </th>
-        <td>
-            @Html.DisplayFor(model => model.user_order_email)
-        </td>
-        <th>
-            @Html.DisplayNameFor(model => model.user_order_phonenumber)
-        </th>
-        <td>
-            @Html.DisplayFor(model => model.user_order_phonenumber)
-        </td>
-        <th>
-            @Html.DisplayNameFor(model => model.is_processed)
-        </th>
-
-        <td>
-            @Html.DisplayFor(model => model.is_processed)
-        </td>
-        <th>
-            @Html.DisplayNameFor(model => model.is_delivered)
-        </th>
-        <td>
-            @Html.DisplayFor(model => model.is_delivered)
-        </td>
-        <th>
-            @Html.DisplayNameFor(model => model.payments)
-        </th>
-        <td>
-            @Html.DisplayFor(model => model.payments)
-        </td>
-        <th>
-            @Html.DisplayNameFor(model => model.order_total_value)
-        </th>
-        <td>
-            @Html.DisplayFor(model => model.order_total_value)
-        </td>
-
-        <th></th>
+        <th>@Html.DisplayName("Thành Tiền")</th>
     </tr>
-    <p>
-        
-        @Html.ActionLink("Trở về danh sách", "Index")
-    </p>
+     @{
+        int i = 1;
+        double TongThanhTien = 0;
+    }
+    @foreach (var item in Model)
+    {
+        foreach (NongSanDungHa.Models.ADO.product pro in ViewBag.Product as List<NongSanDungHa.Models.ADO.product>)
+        {
+            if (pro.product_id == item.product_id)
+            {
+                double thanhtien = Convert.ToDouble(Convert.ToDouble(pro.product_price) * item.order_product_amount);
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product_name)
+                    </td>
+                    <td>
+                        <img src="@Html.DisplayFor(modelItem => pro.product_thumbnail_image)" style="width:100px;height:100px" />
+                    </td>
+                    <td>
+                        @string.Format("{0:0,0.000} đ", pro.product_price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.order_product_amount)
+                    </td>
+                    <td>
+                        @string.Format("{0:0,0.000} đ", thanhtien)
+                    </td>
+                </tr>
+                TongThanhTien += thanhtien;
+            }
+        }
+        i++;
+    }
+</table>
+  
+<div class="d-flex w-100 justify-content-between">
+    <p> @Html.ActionLink("Trở về", "Index", "user_order", new { @class = "btn btn-success" })</p>
+   
+    <p style="text-align:end;font-size:25px;font-weight:bold;color:red">Tổng Thành Tiền :  @string.Format("{0:0,0.000} đ", TongThanhTien)</p>
+</div>
+

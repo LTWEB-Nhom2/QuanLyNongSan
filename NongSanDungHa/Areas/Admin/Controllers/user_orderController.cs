@@ -34,9 +34,11 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         }
         public ActionResult Detail(int id)
         {
-            ListUser_Order list = new ListUser_Order();
-             user_order proRe = list.Details(id).FirstOrDefault();
-            return View(proRe);
+            ListUser_Order_Product order_product = new ListUser_Order_Product();
+            List<user_order_product> listSP = order_product.getSoSanPham(id).ToList();
+            ListProduct pro = new ListProduct();
+            ViewBag.Product = pro.getData().ToList();
+            return View(listSP);
         }
         public ActionResult Edit(int id)
         {

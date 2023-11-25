@@ -1,10 +1,12 @@
-﻿@model IEnumerable<NongSanDungHa.Models.ADO.product>
+﻿@model PagedList<NongSanDungHa.Models.ADO.product>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
 
+@using PagedList;
+@using PagedList.Mvc;
 <h2>Sản Phẩm</h2>
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/Admin/product/SearchResult" method="get">
     <div class="input-group">
@@ -32,17 +34,17 @@
             @Html.DisplayName("STT")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.product_category_id)
+            @Html.DisplayName("ID Loại Sản Phẩm")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.product_name)
+            @Html.DisplayName("Tên Sản Phẩm")
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.product_thumbnail_image)
+            @Html.DisplayName("Hình Ảnh")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.product_price)
+            @Html.DisplayName("Giá")
         </th>
         <th></th>
     </tr>
@@ -76,3 +78,9 @@
     }
 
 </table>
+
+<nav aria-label="Page navigation example" style="display: flex;justify-content:center;align-items:center">
+    <ul class="pagination ">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item" } })
+    </ul>
+</nav>
