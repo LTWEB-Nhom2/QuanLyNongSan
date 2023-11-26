@@ -42,9 +42,6 @@ namespace NongSanDungHa.Controllers
                 {
                     GetCart().Add(pro, quantity);
                 }
-          
-          
-       
             return RedirectToAction("Index", "Cart");
         }
         [HttpPost]

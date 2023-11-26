@@ -119,20 +119,25 @@ namespace NongSanDungHa.Models.ADO
         public int CreateUserAccount(user_account a)
         {
             int kt1, kt2;
+            // Mở kết nối đến cơ sở dữ liệu
             SqlConnection con = db.GetConnection();
             con.Open();
+            // Kiểm tra sự tồn tại của username trong 2 bảng user_username và admin_username
             SqlCommand cmd = new SqlCommand("select count(*) from user_account where user_username = @user_username", con);
             SqlCommand cmd2 = new SqlCommand("select count(*) from admin_account where admin_username = @user_username", con);
             cmd.Parameters.AddWithValue("@user_username", a.user_username);
             cmd2.Parameters.AddWithValue("@user_username", a.user_username);
             kt1 = (int)cmd.ExecuteScalar();
             kt2 = (int)cmd2.ExecuteScalar();
+            // Nếu user_username không tồn tại trong cả hai bảng
             if (kt1 == 0 && kt2 == 0)
             {
-                string insert = "INSERT INTO user_account (user_username, user_password, user_gender, user_email, user_phonenumber,user_address, user_firstname, user_lastname) VALUES (@user_username, @user_password, @user_gender, @user_email, @user_phonenumber,@user_address, @user_firstname, @user_lastname)";
+                // Chuỗi SQL thực hiện việc thêm người dùng mới vào bảng user_account
+                string insert = "INSERT INTO user_account (user_username, user_password, user_gender, user_email,user_phonenumber,user_address, user_firstname, user_lastname) VALUES (@user_username, @user_password, @user_gender, @user_email, @user_phonenumber,@user_address, @user_firstname, @user_lastname)";
+                // Tạo SqlCommand cho câu lệnh INSERT
                 SqlCommand cmd1 = new SqlCommand(insert, con);
                 cmd1.Parameters.Clear();
-
+                // Gán giá trị tham số
                 cmd1.Parameters.Add("@user_username", a.user_username);
                 cmd1.Parameters.Add("@user_password", a.user_password);
                 cmd1.Parameters.Add("@user_gender", a.user_gender);
@@ -141,18 +146,20 @@ namespace NongSanDungHa.Models.ADO
                 cmd1.Parameters.Add("@user_address", a.user_address);
                 cmd1.Parameters.Add("@user_firstname", a.user_firstname);
                 cmd1.Parameters.Add("@user_lastname", a.user_lastname);
+                // Thực hiện câu lệnh INSERT
                 cmd1.CommandType = CommandType.Text;
                 kt1 = cmd1.ExecuteNonQuery();
+                // Đóng kết nối đến cơ sở dữ liệu
                 con.Close();
+                // Trả về 0 để thể hiện rằng người dùng đã được thêm thành công
                 return 0;
             }
             else
             {
+                // Nếu user_username đã tồn tại trong ít nhất một bảng, trả về 1 để báo hiệu lỗi
                 con.Close();
                 return 1;
             }
-
-
 
         }
         public List<user_account> Details(int id)
@@ -189,12 +196,14 @@ namespace NongSanDungHa.Models.ADO
         }
         public void update(user_account item)
         {
-
-
+            // Mở kết nối đến CSDL
             SqlConnection con = db.GetConnection();
             con.Open();
+            // Chuỗi SQL cập nhật thông tin người dùng trong bảng user_account
             string update = "Update user_account set user_username = @user_username,user_password = @user_password,user_gender = @user_gender,user_email = @user_email,user_phonenumber = @user_phonenumber,user_address = @user_address, user_firstname = @user_firstname, user_lastname = @user_lastname where user_account_id = @user_account_id ";
+            // Tạo SqlCommand cho câu lệnh UPDATE
             SqlCommand cmd = new SqlCommand(update, con);
+            // Gán giá trị tham số
             cmd.Parameters.Add("@user_account_id", item.user_account_id);
             cmd.Parameters.Add("@user_username", item.user_username);
             cmd.Parameters.Add("@user_password", item.user_password);
@@ -204,7 +213,9 @@ namespace NongSanDungHa.Models.ADO
             cmd.Parameters.Add("@user_address", item.user_address);
             cmd.Parameters.Add("@user_firstname", item.user_firstname);
             cmd.Parameters.Add("@user_lastname", item.user_lastname);
+            // Thực hiện câu lệnh UPDATE
             cmd.ExecuteNonQuery();
+            // Giải phóng tài nguyên
             cmd.Dispose();
             con.Close();
         }

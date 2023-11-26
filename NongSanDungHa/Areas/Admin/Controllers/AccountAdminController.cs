@@ -16,7 +16,6 @@ namespace NongSanDungHa.Areas.Admin.Controllers
 
         public ActionResult Index(int ?page)
         {
-           
             ListAdminAccount user = new ListAdminAccount();
             ViewBag.TotalAdmin = user.getData().Count();
             List<admin_account> list = user.getData().ToList();
@@ -41,7 +40,7 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult Detail(int id)
         {
             ListAdminAccount list = new ListAdminAccount();
-             admin_account user = list.Details(id).FirstOrDefault();
+            admin_account user = list.Details(id).FirstOrDefault();
             return View(user);
         }
         public ActionResult Edit(int id)
