@@ -13,6 +13,9 @@
 <p>
     Tổng số tài khoản: @ViewBag.ToTalUser
 </p>
+<div class="alert alert-danger" id="alert_delete_failed" style="display:none" role="alert">
+    Xóa thất bại do dữ liệu có thể đang được sử dụng
+</div>
 <table class="table">
     <tr>
         <th>
@@ -47,8 +50,10 @@
         </th>
         <th></th>
     </tr>
+      <tbody id="user-account-content">
 
-@foreach (var item in Model) {
+      </tbody>
+@*@foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.user_username)
@@ -86,6 +91,106 @@
             @Html.ActionLink("Xóa", "Delete", new { id=item.user_account_id })
         </td>
     </tr>
-}
+}*@
 
 </table>
+<div class="modal fade" id="ModalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông tin chi tiết</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                   
+                    <dt>
+                        @Html.DisplayNameFor(model => model.user_username)
+
+                    </dt>
+
+                    <dd>
+                        <input type="hidden" id="user_id" />
+                        <input type="text" id="username" class="form-control" />
+
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.user_password)
+
+                    </dt>
+
+                    <dd>
+
+                        <input type="text" id="password" class="form-control" />
+
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.user_firstname)
+
+                    </dt>
+
+                    <dd>
+
+                        <input type="text" id="firstname" class="form-control" />
+
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.user_lastname)
+                    </dt>
+
+                    <dd>
+                        <input type="text" id="lastname" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.user_gender)
+                    </dt>
+
+                    <dd>
+
+                        <input type="text" id="gender" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.user_address)
+                    </dt>
+
+                    <dd>
+                        <input type="text" id="address" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.user_email)
+                    </dt>
+
+                    <dd>
+                        <input type="email" id="email" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.user_phonenumber)
+                    </dt>
+
+                    <dd>
+                        <input type="number" id="phonenumber" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.user_member_tier)
+                    </dt>
+
+                    <dd>
+                        <input type="text" id="tier" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.user_point)
+                    </dt>
+
+                    <dd>
+                        <input type="number" id="point" class="form-control" />
+                    </dd>
+
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" name="save" id="btn-savechanges" class="btn btn-success">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>

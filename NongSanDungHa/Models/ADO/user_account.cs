@@ -194,30 +194,39 @@ namespace NongSanDungHa.Models.ADO
             con.Close();
             return list;
         }
-        public void update(user_account item)
+        public int update(user_account item)
         {
-            // Mở kết nối đến CSDL
-            SqlConnection con = db.GetConnection();
-            con.Open();
-            // Chuỗi SQL cập nhật thông tin người dùng trong bảng user_account
-            string update = "Update user_account set user_username = @user_username,user_password = @user_password,user_gender = @user_gender,user_email = @user_email,user_phonenumber = @user_phonenumber,user_address = @user_address, user_firstname = @user_firstname, user_lastname = @user_lastname where user_account_id = @user_account_id ";
-            // Tạo SqlCommand cho câu lệnh UPDATE
-            SqlCommand cmd = new SqlCommand(update, con);
-            // Gán giá trị tham số
-            cmd.Parameters.Add("@user_account_id", item.user_account_id);
-            cmd.Parameters.Add("@user_username", item.user_username);
-            cmd.Parameters.Add("@user_password", item.user_password);
-            cmd.Parameters.Add("@user_gender", item.user_gender);
-            cmd.Parameters.Add("@user_email", item.user_email);
-            cmd.Parameters.Add("@user_phonenumber", item.user_phonenumber);
-            cmd.Parameters.Add("@user_address", item.user_address);
-            cmd.Parameters.Add("@user_firstname", item.user_firstname);
-            cmd.Parameters.Add("@user_lastname", item.user_lastname);
-            // Thực hiện câu lệnh UPDATE
-            cmd.ExecuteNonQuery();
-            // Giải phóng tài nguyên
-            cmd.Dispose();
-            con.Close();
+            try
+            {
+                // Mở kết nối đến CSDL
+                SqlConnection con = db.GetConnection();
+                con.Open();
+                // Chuỗi SQL cập nhật thông tin người dùng trong bảng user_account
+                string update = "Update user_account set user_username = @user_username,user_password = @user_password,user_gender = @user_gender,user_email = @user_email,user_phonenumber = @user_phonenumber,user_address = @user_address, user_firstname = @user_firstname, user_lastname = @user_lastname where user_account_id = @user_account_id ";
+                // Tạo SqlCommand cho câu lệnh UPDATE
+                SqlCommand cmd = new SqlCommand(update, con);
+                // Gán giá trị tham số
+                cmd.Parameters.Add("@user_account_id", item.user_account_id);
+                cmd.Parameters.Add("@user_username", item.user_username);
+                cmd.Parameters.Add("@user_password", item.user_password);
+                cmd.Parameters.Add("@user_gender", item.user_gender);
+                cmd.Parameters.Add("@user_email", item.user_email);
+                cmd.Parameters.Add("@user_phonenumber", item.user_phonenumber);
+                cmd.Parameters.Add("@user_address", item.user_address);
+                cmd.Parameters.Add("@user_firstname", item.user_firstname);
+                cmd.Parameters.Add("@user_lastname", item.user_lastname);
+                // Thực hiện câu lệnh UPDATE
+                cmd.ExecuteNonQuery();
+                // Giải phóng tài nguyên
+                cmd.Dispose();
+                con.Close();
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
+           
         }
         public void updatePassword(int id, string password)
         {
@@ -233,16 +242,25 @@ namespace NongSanDungHa.Models.ADO
             cmd.Dispose();
             con.Close();
         }
-        public void delete(int id)
+        public int delete(int id)
         {
-            SqlConnection con = db.GetConnection();
-            con.Open();
-            string sql = "Delete from user_account where user_account_id = @id";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.Add("@id", id);
-            cmd.ExecuteNonQuery();
-            cmd.Dispose();
-            con.Close();
+            try
+            {
+                SqlConnection con = db.GetConnection();
+                con.Open();
+                string sql = "Delete from user_account where user_account_id = @id";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.Add("@id", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                con.Close();
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
+        
         }
 
         public int TotalGetTotalAccounts()
