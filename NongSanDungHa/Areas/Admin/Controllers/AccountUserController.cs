@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 
 namespace NongSanDungHa.Areas.Admin.Controllers
@@ -59,7 +60,7 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             list.delete(id);
             return RedirectToAction("Index");
         }
-
+        //Ajax
         [HttpGet]
         public JsonResult GetData()
         {
@@ -100,6 +101,15 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
 
 
+        }
+        [HttpPost]
+        public JsonResult JsonAdd(user_account user)
+        {
+            ListUserAccount list = new ListUserAccount();
+            var result = list.CreateUserAccount(user);
+            if (result == 0)
+            return Json(new {Success = true},JsonRequestBehavior.AllowGet);
+            else return Json(new {Success = false},JsonRequestBehavior.AllowGet);
         }
     }
 }
