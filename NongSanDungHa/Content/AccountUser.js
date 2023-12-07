@@ -1,130 +1,130 @@
-﻿
-//$(document).ready(function () {
+﻿//Account User
+$(document).ready(function () {
 
-//    LoadUserAccount();
-//})
-//function LoadUserAccount() {
-//    $.ajax(
-//        {
-//            url: "/Admin/AccountUser/GetData",
-//            type: "GET",
-//            success: function (res) {
+    LoadUserAccount();
+})
+function LoadUserAccount() {
+    $.ajax(
+        {
+            url: "/Admin/AccountUser/GetData",
+            type: "GET",
+            success: function (res) {
                 
-//                if (res.TotalUser > 0) {
-//                    $("#user-account-content").empty();
-//                    var html = "";
-//                    var items = res.data;
-//                    for (let i = 0; i < res.TotalUser; i++) {
-//                        html += "<tr id='" + items[i].user_account_id + "'>";
-//                        html += "<td>" + items[i].user_username + " </td>";
-//                        html += "<td>" + items[i].user_password + " </td>";
-//                        html += "<td>" + items[i].user_gender + " </td>";
-//                        html += "<td>" + items[i].user_email + " </td>";
-//                        html += "<td>" + items[i].user_phonenumber + " </td>";
-//                        html += "<td>" + items[i].user_address + " </td>";
-//                        html += "<td>" + items[i].user_firstname + " </td>";
-//                        html += "<td>" + items[i].user_lastname + " </td>";
-//                        html += "<td>" + items[i].user_member_tier + " </td>";
-//                        html += "<td>" + items[i].user_point + " </td>";
-//                        html += "<td><button type='button' name='View' data-bs-toggle='modal' onclick='return User_Details(" + items[i].user_account_id + ")' data-bs-target='#ModalView'   class='btn btn-success me-1'><i class='fas fa-eye'></i></button><button data-bs-target='#ModalView' data-bs-toggle='modal' name='Edit' type='button' class='btn btn-warning me-1'><i class='fas fa-edit'></i></button>";
-//                        html += "<button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'> <i class='fas fa-trash-alt'></i> </button > " +
-//                            "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>" +
-//                            " <div class='modal-dialog'>" +
-//                            "<div class='modal-content'>" +
-//                            "<div class='modal-header'>" +
-//                            "<h5 class='modal-title' id='exampleModalLabel'>Thông Báo</h5>" +
-//                            "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>" +
-//                            "</div>" +
-//                            "<div class='modal-body'>" +
-//                            "Bạn có chắc muốn xóa?" +
-//                            "</div>" +
-//                            "<div class='modal-footer'>" +
-//                            "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>" +
-//                            "<button type='button' class='btn btn-danger' onclick='User_DeleteUser(" + items[i].user_account_id + ")'>Xóa</button>" +
-//                            "</div>" +
-//                            "</div>" +
-//                            "</div>" +
-//                            "</div>";
-//                        html += "</td>"
-//                        html += "</tr>";
+                if (res.TotalUser > 0) {
+                    $("#user-account-content").empty();
+                    var html = "";
+                    var items = res.data;
+                    for (let i = 0; i < res.TotalUser; i++) {
+                        html += "<tr id='" + items[i].user_account_id + "'>";
+                        html += "<td>" + items[i].user_username + " </td>";
+                        html += "<td>" + items[i].user_password + " </td>";
+                        html += "<td>" + items[i].user_gender + " </td>";
+                        html += "<td>" + items[i].user_email + " </td>";
+                        html += "<td>" + items[i].user_phonenumber + " </td>";
+                        html += "<td>" + items[i].user_address + " </td>";
+                        html += "<td>" + items[i].user_firstname + " </td>";
+                        html += "<td>" + items[i].user_lastname + " </td>";
+                        html += "<td>" + items[i].user_member_tier + " </td>";
+                        html += "<td>" + items[i].user_point + " </td>";
+                        html += "<td><button type='button' name='View' data-bs-toggle='modal' onclick='return User_Details(" + items[i].user_account_id + ")' data-bs-target='#ModalView'   class='btn btn-success me-1'><i class='fas fa-eye'></i></button>   <a class='btn btn-warning me-2' href='/Admin/AccountUser/Edit/" + items[i].user_account_id + "') '><i class='fas fa-edit'></i></a>";
+                        html += "<button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'> <i class='fas fa-trash-alt'></i> </button > " +
+                            "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>" +
+                            " <div class='modal-dialog'>" +
+                            "<div class='modal-content'>" +
+                            "<div class='modal-header'>" +
+                            "<h5 class='modal-title' id='exampleModalLabel'>Thông Báo</h5>" +
+                            "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>" +
+                            "</div>" +
+                            "<div class='modal-body'>" +
+                            "Bạn có chắc muốn xóa?" +
+                            "</div>" +
+                            "<div class='modal-footer'>" +
+                            "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>" +
+                            "<button type='button' class='btn btn-danger' onclick='User_DeleteUser(" + items[i].user_account_id + ")'>Xóa</button>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>";
+                        html += "</td>"
+                        html += "</tr>";
 
 
-//                    }
-//                    $("#user-account-content").html(html);
+                    }
+                    $("#user-account-content").html(html);
 
-//                }
-//            }
-//        }
-//    )
-//}
+                }
+            }
+        }
+    )
+}
 
-//function User_DeleteUser(idItem) {
+function User_DeleteUser(idItem) {
 
-//    $.ajax(
-//        {
-//            url: "/Admin/AccountUser/JsonDelete/" + idItem,
-//            type: "POST",
-//            success: function (result) {
-//                if (result.Success == true) {
+    $.ajax(
+        {
+            url: "/Admin/AccountUser/JsonDelete/" + idItem,
+            type: "POST",
+            success: function (result) {
+                if (result.Success == true) {
 
-//                    $("#alert_delete_failed").css("display", "none");
-//                    LoadUserAccount();
-//                }
-//                else {
+                    $("#alert_delete_failed").css("display", "none");
+                    LoadUserAccount();
+                }
+                else {
 
-//                    $("#alert_delete_failed").css("display", "inline");
-//                    setTimeout(() => {
-//                        $("#alert_delete_failed").css("display", "none");
-//                    }, 5000)
+                    $("#alert_delete_failed").css("display", "inline");
+                    setTimeout(() => {
+                        $("#alert_delete_failed").css("display", "none");
+                    }, 5000)
 
 
-//                }
+                }
 
-//            },
-//            error: function () {
-//                console.log("Xoa that bai");
-//            }
+            },
+            error: function () {
+                console.log("Xoa that bai");
+            }
 
-//        });
-//}
-//function User_Details(idItem) {
-//    $.ajax(
-//        {
-//            url: "/Admin/AccountUser/JsonDetail/" + idItem,
-//            type: "GET",
-//            success: function (result) {
+        });
+}
+function User_Details(idItem) {
+    $.ajax(
+        {
+            url: "/Admin/AccountUser/JsonDetail/" + idItem,
+            type: "GET",
+            success: function (result) {
               
-//                $("#username").val(result.user_username);
-//                $("#username").prop("readonly", true);
-//                $("#password").val(result.user_password);
-//                $("#password").prop("readonly", true);
-//                $("#firstname").val(result.user_firstname);
-//                $("#firstname").prop("readonly", true);
-//                $("#lastname").val(result.user_lastname);
-//                $("#lastname").prop("readonly", true);
-//                $("#gender").val(result.user_gender);
-//                $("#gender").prop("readonly", true);
-//                $("#address").val(result.user_address);
-//                $("#address").prop("readonly", true);
-//                $("#email").val(result.user_email);
-//                $("#email").prop("readonly", true);
-//                $("#phonenumber").val(result.user_phonenumber);
-//                $("#phonenumber").prop("readonly", true);
-//                $("#tier").val(result.user_member_tier);
-//                $("#tier").prop("readonly", true);
-//                $("#point").val(result.user_point);
-//                $("#point").prop("readonly", true);
+                $("#username").val(result.user_username);
+                $("#username").prop("readonly", true);
+                $("#password").val(result.user_password);
+                $("#password").prop("readonly", true);
+                $("#firstname").val(result.user_firstname);
+                $("#firstname").prop("readonly", true);
+                $("#lastname").val(result.user_lastname);
+                $("#lastname").prop("readonly", true);
+                $("#gender").val(result.user_gender);
+                $("#gender").prop("readonly", true);
+                $("#address").val(result.user_address);
+                $("#address").prop("readonly", true);
+                $("#email").val(result.user_email);
+                $("#email").prop("readonly", true);
+                $("#phonenumber").val(result.user_phonenumber);
+                $("#phonenumber").prop("readonly", true);
+                $("#tier").val(result.user_member_tier);
+                $("#tier").prop("readonly", true);
+                $("#point").val(result.user_point);
+                $("#point").prop("readonly", true);
 
-//                $("#btn-savechanges").hide();
-//                $("#ModalView").modal();
-//            },
-//            error: function () {
-//                console.log("Lay thong tin chi tiet that bai");
-//            }
+                $("#btn-savechanges").hide();
+                $("#ModalView").modal();
+            },
+            error: function () {
+                console.log("Lay thong tin chi tiet that bai");
+            }
 
-//        }
-//    )
-//}
+        }
+    )
+}
 
 //$(document).on("click", "button[name='Edit']", function () {
 //    var idItem = $(this).closest("tr").attr("id");
@@ -186,7 +186,7 @@
 //            success: function (result) {
 //                if (result.Success == true) {
 
-             
+
 //                    $("#ModalView").modal("hide");
 
 
@@ -230,7 +230,7 @@
 //            }
 //        })
 //    }
-  
+
 //})
 //$(document).on("click", "button=[name='add-user']", function () {
 //    $("#user_id").val('');
@@ -256,3 +256,5 @@
 //    $("#point").prop("readonly", true);
 //    $("#ModalView").modal();
 //})
+
+//--Admin Account

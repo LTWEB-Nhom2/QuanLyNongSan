@@ -143,7 +143,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="@Url.Action("UserInformation","User",new {UserID = user.user_account_id})">Thông tin cá nhân</a></li>
-                                    <li>@Html.ActionLink("Đổi mật khẩu","ChangePassword",new {Controller = "User"}, new { @class="dropdown-item"})</li>
+                                    <li>@Html.ActionLink("Đổi mật khẩu", "ChangePassword", new { Controller = "User" }, new { @class = "dropdown-item" })</li>
                                     <li><a class="dropdown-item" href="@Url.Action("DetailCart","Cart", new {UserID = user.user_account_id})">Kiểm tra đơn hàng</li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="~/User/Logout">Đăng xuất <i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
@@ -166,39 +166,39 @@
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="row ">
-                      
-                            <form id="search" class="d-flex col-md-12 " action="/Home/SearchResult" method="get" enctype="multipart/form-data">
-                                <input id="search-box" class="form-control me-2 col-md-10" name="searchKey" type="search" placeholder="Bạn cần tìm kiếm gì?" aria-label="Search">
-                                <button class="btn btn-outline-success col-md-2" name="submit" type="submit">Search</button>
 
-                            </form>
-                      
-                     
+                        <form id="search" class="d-flex col-md-12 " action="/Home/SearchResult" method="get" enctype="multipart/form-data">
+                            <input id="search-box" class="form-control me-2 col-md-10" name="searchKey" type="search" placeholder="Bạn cần tìm kiếm gì?" aria-label="Search">
+                            <button class="btn btn-outline-success col-md-2" name="submit" type="submit">Search</button>
+
+                        </form>
+
+
                     </div>
-                  <script>
-                      const search = document.getElementById("search");
-                      window.addEventListener('scroll', () => {
-                          const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-                          const scrolled = window.scrollY;
-                          if (window.scrollY == 0) {
-                              search.classList.remove("search_fix");
-                          }
-                          else
-                              search.classList.add("search_fix");
-                          //if (Math.ceil(scrolled) == scrollable) {
-                          //    search.classList.add("search_fix");
-                          //}
-                          //else
-                          //    search.classList.remove("search_fix");
-                      })
-                  </script>
+                    <script>
+                        const search = document.getElementById("search");
+                        window.addEventListener('scroll', () => {
+                            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+                            const scrolled = window.scrollY;
+                            if (window.scrollY == 0) {
+                                search.classList.remove("search_fix");
+                            }
+                            else
+                                search.classList.add("search_fix");
+                            //if (Math.ceil(scrolled) == scrollable) {
+                            //    search.classList.add("search_fix");
+                            //}
+                            //else
+                            //    search.classList.remove("search_fix");
+                        })
+                    </script>
 
                 </div>
                 <div style="margin-top:15px;" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right">
-                  
-                            <a class="cart" href="~/Cart/Index">Giỏ Hàng <i style="font-size: 25px" class="fas fa-shopping-cart"></i></a>
-                            <span style="color: white; background: red; border-radius: 10px; padding: 0px 5px; font-weight: bold; font-size: 18px; margin-top: -15px; position: absolute; margin-left: -9px;">@CartItemCount</span>
-                   
+
+                    <a class="cart" href="~/Cart/Index">Giỏ Hàng <i style="font-size: 25px" class="fas fa-shopping-cart"></i></a>
+                    <span style="color: white; background: red; border-radius: 10px; padding: 0px 5px; font-weight: bold; font-size: 18px; margin-top: -15px; position: absolute; margin-left: -9px;">@CartItemCount</span>
+
 
                 </div>
             </div>
@@ -231,7 +231,7 @@
                 <li class="nav-item">
                     <a class="nav-link item-Son" href="#">Quà Biếu Quà Tết</a>
                 </li>
-               
+
                 <li class="nav-item">
                     <a class="nav-link item-Son" href="#">Tuyển Dụng</a>
                 </li>
@@ -260,7 +260,9 @@
     @RenderSection("scripts", required: false)
     <script src="~/accset/vendor/jquery/jquery.min.js"></script>
     <script src="~/accset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="~/Content/Cart.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="~/accset/vendor/jquery-easing/jquery.easing.min.js"></script>
 

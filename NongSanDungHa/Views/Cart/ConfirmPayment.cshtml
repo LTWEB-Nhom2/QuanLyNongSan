@@ -45,6 +45,27 @@
                             @Html.ValidationMessageFor(model => model.user_order_address, "", new { @class = "text-danger" })
                         </div>
                         <div class="mb-3">
+                            <label>Tỉnh/thành</label>
+                            <select class="form-control" name="city" id="city">
+                                <option value="" selected>Chọn tỉnh thành</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Quận/huyện</label>
+                            <select class="form-control" name="district" id="district">
+                                <option value="" selected>Chọn quận huyện</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Phường/xã</label>
+                            <select class="form-control" name="ward" id="ward">
+                                <option value="" selected>Chọn phường xã</option>
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
                             @Html.LabelFor(model => model.user_order_email, htmlAttributes: new { @class = "control-label" })
 
                             @Html.TextBoxFor(model => model.user_order_email, new { @class = "form-control col-md-12", @type = "email" })
@@ -94,30 +115,44 @@
 
                         </ul>
                         <div class="mb-3 form-check" style="justify-content: center; align-items: center; display: flex;">
-                            <input type="checkbox" class="form-check-input" name="accept" value="true" id="exampleCheck1">
+                            <input type="checkbox" class="form-check-input" name="accept" value="true" id="checkboxAccept">
                             <label class="form-check-label" for="exampleCheck1">Tôi dồng ý với các chính sách trên</label>
                         </div>
 
                         <div class="mb-3">
-                            @{
-                                if (!string.IsNullOrEmpty(ViewBag.Accept) && ViewBag.kt != 0)
-                                {
-                                    <div class="alert alert-danger" role="alert">
-                                        @ViewBag.Accept
-                                    </div>
-                                }
-                            }
+
+                            <div class="alert alert-danger" style="display:none"id="alertAccept" role="alert">
+                                Bạn chưa đồng ý với các chính sách
+                            </div>
+
+
 
                         </div>
                         <div class="mt-1 mb-2">
-                            <button type="submit" class=" btn btn-success col-md-12">Tiến hành thanh toán</button>
+                            <button type="submit" id="submitbtn" onclick="checkCheckbox()" class=" btn btn-success col-md-12">Tiến hành thanh toán</button>
 
                         </div>
 
 
 
 
+                        <script>
+                            var alertCheckbox = document.getElementById("alertAccept");
 
+                            function checkCheckbox() {
+                                // Get the checkbox element
+                                var checkbox = document.getElementById('checkboxAccept');
+
+                                // Check if the checkbox is checked
+                                if (checkbox.checked) {
+                                    alertAccept.style.display = "none";
+                                } else {
+                                    
+                                    var alertAccept = document.getElementById("alertAccept");
+                                    alertAccept.style.display = "block";
+                                }
+                            }
+                        </script>
                     </form>
                 </div>
 
@@ -128,7 +163,7 @@
     else
     {
         <div class="alert alert-danger" role="alert">
-            không tìm thấy trang
+           Vui lòng đăng nhập để thanh toán
         </div>
     }
 

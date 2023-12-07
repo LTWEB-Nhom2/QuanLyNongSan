@@ -21,7 +21,28 @@
             border-color: #ced4da;
             box-shadow:none;
         }
+        .hidden-content {
+            overflow: hidden;
+            line-height: 1.5em;
+            height: 4.5em;
+        }
 
+        .show-more {
+            display: block;
+            cursor: pointer;
+            color: #fbae37;
+            text-decoration: none;
+      
+            margin-top: -50px;
+            margin-left:50px;
+            max-width: 150px;
+            padding: 5px 5px;
+            text-align: center;
+        }
+
+        .hidden-content {
+            margin-bottom: 10px;
+        }
     </style>
 }
 @model  NongSanDungHa.Models.product
@@ -208,19 +229,19 @@
                 <div class="tab-pane container fade" id="menu1">
                     <div class="row mt-3">
 
-                    <div class="row mb-3">
-                        <div class="col-md-12" style="font-weight:bold">
-                            @review.Count() bình luận
+                        <div class="row mb-3">
+                            <div class="col-md-12" style="font-weight:bold">
+                                @review.Count() bình luận
+                            </div>
+
                         </div>
-                        
-                    </div>
-                    <div class="row mb-5">
-                        @{
-                            foreach (var item in review)
-                            {
-                               
-                                <div class="col-md-12">
-                                    
+                        <div class="row mb-5 hidden-content" id="hiddenContent">
+                            @{
+                                foreach (var item in review)
+                                {
+
+                                    <div class="col-md-12">
+
                                         <div class="row mb-3">
                                             <div class="col-md-1">
                                                 <img src="https://img.freepik.com/fotos-premium/ilustracao-em-vetor-de-personagem-de-desenho-animado-de-legumes-engracados-de-alface-kawaii_780593-2242.jpg?size=338&ext=jpg&ga=GA1.1.386372595.1698105600&semt=ais" style="width:50px;height:50px;border-radius:50px" />
@@ -233,71 +254,91 @@
                                                     <div class="col-md-9">
                                                         <p style="margin:auto;font-size:12px">@item.review_time</p>
                                                     </div>
-                                                    
+
                                                 </div>
-                                                
+
                                                 <p>@item.product_review_content</p>
-                                              
+
                                             </div>
-                                            
-                                            
+
+
                                         </div>
-                                  
-                                    
-                                </div>
+
+
+                                    </div>
+                                }
                             }
+                            <script>
+                                function toggleContent() {
+                                    var hiddenContent = document.getElementById("hiddenContent");
+                                    var showMoreLink = document.getElementById("showMoreLink");
+
+                                    if (hiddenContent.style.height === "auto") {
+                                        hiddenContent.style.height = "4.5em";
+                                        showMoreLink.innerHTML = "Xem thêm";
+                                    } else {
+                                        hiddenContent.style.height = "auto";
+                                        showMoreLink.innerHTML = "Rút gọn";
+                                    }
+                                }
+                            </script>
+                        </div>
+                        @if (review.Count() > 1)
+                        {
+                            <div class="row">
+                                <span id="showMoreLink" class="show-more" onclick="toggleContent()">Xem thêm</span>
+                            </div>
                         }
 
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img src="https://img.freepik.com/fotos-premium/ilustracao-em-vetor-de-personagem-de-desenho-animado-de-legumes-engracados-de-alface-kawaii_780593-2242.jpg?size=338&ext=jpg&ga=GA1.1.386372595.1698105600&semt=ais" style="width:100px;height:100px;border-radius:50px"/>
-                        </div>
-                        <div class="col-md-10">
-                            @{
-                                if (user != null)
-                                {
-                                    <form class="row" method="post" action="/Home/Comment">
-                                        <input name="UserID" type="hidden" value="@user.user_account_id" />
-                                        <input name="ProductID" type="hidden" value="@Model.product_id" />
-                                        <textarea autocomplete="off" id="reviews" name="comment-text" class="form1 form-control w-100" id="exampleFormControlTextarea1" placeholder="Viết bình luận..." rows="5" style="margin-left:-20px;transition:none"></textarea>
-                                        <div  class="span-comment col-md-12" style="background-color: #f5f6f7; border: 1px solid #ced4da;border-top:0px; width: 100%; height: 47px; margin-left: -20px; text-align: right">
-                                            <button  disabled id="submitButton" type="submit" class="btn " style="margin-top: 3px; background-color: #4267b2; border-color: #4267b2;color:white ">Đăng</button>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="https://img.freepik.com/fotos-premium/ilustracao-em-vetor-de-personagem-de-desenho-animado-de-legumes-engracados-de-alface-kawaii_780593-2242.jpg?size=338&ext=jpg&ga=GA1.1.386372595.1698105600&semt=ais" style="width:100px;height:100px;border-radius:50px" />
+                            </div>
+                            <div class="col-md-10 ">
+                                @{
+                                    if (user != null)
+                                    {
+                                        <form class="row" method="post" action="/Home/Comment">
+                                            <input name="UserID" type="hidden" value="@user.user_account_id" />
+                                            <input name="ProductID" type="hidden" value="@Model.product_id" />
+                                            <textarea autocomplete="off" id="reviews" name="comment-text" class="form1 form-control w-100" id="exampleFormControlTextarea1" placeholder="Viết bình luận..." rows="5" style="margin-left:-20px;transition:none"></textarea>
+                                            <div class="span-comment col-md-12" style="background-color: #f5f6f7; border: 1px solid #ced4da;border-top:0px; width: 100%; height: 47px; margin-left: -20px; text-align: right">
+                                                <button disabled id="submitButton" type="submit" class="btn " style="margin-top: 3px; background-color: #4267b2; border-color: #4267b2;color:white ">Đăng</button>
+                                            </div>
+                                        </form>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="row">
+                                            <div class="alert alert-primary" role="alert" style="position: relative; top: 15px;">
+                                                Vui lòng <a href="~/User/Login" style="font-weight:bold">Đăng nhập</a> để bình luận.
+                                            </div>
                                         </div>
-                                    </form>
-                                    
+
+                                    }
+                                    <script>
+                                        const textArea1 = document.getElementById("reviews");
+                                        const submitBtn = document.getElementById("submitButton");
+                                        textArea1.addEventListener("keyup", function (e) {
+                                            const value = e.currentTarget.value;
+                                            if (value == "")
+                                                submitBtn.disabled = true;
+                                            else
+                                                submitBtn.disabled = false;
+                                        })
+                                    </script>
+
                                 }
-                                else
-                                {
-                                    <div class="row">
-                                        <div class="alert alert-primary" role="alert" style="position: relative; top: 15px;">
-                                            Vui lòng <a href="~/User/Login" style="font-weight:bold">Đăng nhập</a> để bình luận.
-                                        </div>
-                                    </div>
-                                   
-                                }
-                                <script>
-                                    const textArea1 = document.getElementById("reviews");
-                                    const submitBtn = document.getElementById("submitButton");
-                                    textArea1.addEventListener("keyup", function (e) {
-                                        const value = e.currentTarget.value;
-                                        if (value == "")
-                                            submitBtn.disabled = true;
-                                        else
-                                            submitBtn.disabled = false;
-                                    })
-                                </script>
-
-                            }
 
 
+
+
+                            </div>
 
 
                         </div>
-                       
-                        
-                    </div>
-                        
+
 
 
 

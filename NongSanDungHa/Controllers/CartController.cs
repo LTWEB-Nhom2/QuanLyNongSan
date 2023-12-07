@@ -112,16 +112,16 @@ namespace NongSanDungHa.Controllers
         }
         
         [HttpPost]
-        public ActionResult Payment(int UserID,NongSanDungHa.Models.ADO.user_order user1, string payments, string accept)
+        public ActionResult Payment(int UserID,NongSanDungHa.Models.ADO.user_order user1,string city,string district,string ward, string payments)
         {
 
             user_account user = db.user_accounts.SingleOrDefault(x => x.user_account_id == UserID);
-            int kt = 0;
-            if (user != null && accept == "true")
+           
+            if (user != null )
             {
                 user_order userOrder = new user_order();
                 userOrder.user_account_id = user.user_account_id;
-                userOrder.user_order_address = user1.user_order_address;
+                userOrder.user_order_address = user1.user_order_address + ", " + ward + ", " +", " + district + ", " + city;
                 userOrder.user_order_phonenumber = user1.user_order_phonenumber;
                 userOrder.user_order_buyer_name = user1.user_order_buyer_name;
                 userOrder.user_order_email = user1.user_order_email;
@@ -170,12 +170,7 @@ namespace NongSanDungHa.Controllers
                 new MailHelper().SendMail(toEmail, "Đơn Hàng mới từ Nông Sản Dung Hà", content);
                 Session["Cart"] = null;
             }
-            else if(accept != "true")
-            {
-                kt = 1;
-                ViewBag.kt = kt;
-                ViewBag.Accept = "Bạn chưa đồng ý với tất cả chính sách";
-            }
+          
             
                 
             return RedirectToAction("Payment", "Cart");
