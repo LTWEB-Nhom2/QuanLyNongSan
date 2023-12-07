@@ -1,62 +1,62 @@
 ﻿//Account User
-$(document).ready(function () {
+//$(document).ready(function () {
 
-    LoadUserAccount();
-})
-function LoadUserAccount() {
-    $.ajax(
-        {
-            url: "/Admin/AccountUser/GetData",
-            type: "GET",
-            success: function (res) {
+//    LoadUserAccount();
+//})
+//function LoadUserAccount() {
+//    $.ajax(
+//        {
+//            url: "/Admin/AccountUser/GetData",
+//            type: "GET",
+//            success: function (res) {
                 
-                if (res.TotalUser > 0) {
-                    $("#user-account-content").empty();
-                    var html = "";
-                    var items = res.data;
-                    for (let i = 0; i < res.TotalUser; i++) {
-                        html += "<tr id='" + items[i].user_account_id + "'>";
-                        html += "<td>" + items[i].user_username + " </td>";
-                        html += "<td>" + items[i].user_password + " </td>";
-                        html += "<td>" + items[i].user_gender + " </td>";
-                        html += "<td>" + items[i].user_email + " </td>";
-                        html += "<td>" + items[i].user_phonenumber + " </td>";
-                        html += "<td>" + items[i].user_address + " </td>";
-                        html += "<td>" + items[i].user_firstname + " </td>";
-                        html += "<td>" + items[i].user_lastname + " </td>";
-                        html += "<td>" + items[i].user_member_tier + " </td>";
-                        html += "<td>" + items[i].user_point + " </td>";
-                        html += "<td><button type='button' name='View' data-bs-toggle='modal' onclick='return User_Details(" + items[i].user_account_id + ")' data-bs-target='#ModalView'   class='btn btn-success me-1'><i class='fas fa-eye'></i></button>   <a class='btn btn-warning me-2' href='/Admin/AccountUser/Edit/" + items[i].user_account_id + "') '><i class='fas fa-edit'></i></a>";
-                        html += "<button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'> <i class='fas fa-trash-alt'></i> </button > " +
-                            "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>" +
-                            " <div class='modal-dialog'>" +
-                            "<div class='modal-content'>" +
-                            "<div class='modal-header'>" +
-                            "<h5 class='modal-title' id='exampleModalLabel'>Thông Báo</h5>" +
-                            "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>" +
-                            "</div>" +
-                            "<div class='modal-body'>" +
-                            "Bạn có chắc muốn xóa?" +
-                            "</div>" +
-                            "<div class='modal-footer'>" +
-                            "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>" +
-                            "<button type='button' class='btn btn-danger' onclick='User_DeleteUser(" + items[i].user_account_id + ")'>Xóa</button>" +
-                            "</div>" +
-                            "</div>" +
-                            "</div>" +
-                            "</div>";
-                        html += "</td>"
-                        html += "</tr>";
+//                if (res.TotalUser > 0) {
+//                    $("#user-account-content").empty();
+//                    var html = "";
+//                    var items = res.data;
+//                    for (let i = 0; i < res.TotalUser; i++) {
+//                        html += "<tr id='" + items[i].user_account_id + "'>";
+//                        html += "<td>" + items[i].user_username + " </td>";
+//                        html += "<td>" + items[i].user_password + " </td>";
+//                        html += "<td>" + items[i].user_gender + " </td>";
+//                        html += "<td>" + items[i].user_email + " </td>";
+//                        html += "<td>" + items[i].user_phonenumber + " </td>";
+//                        html += "<td>" + items[i].user_address + " </td>";
+//                        html += "<td>" + items[i].user_firstname + " </td>";
+//                        html += "<td>" + items[i].user_lastname + " </td>";
+//                        html += "<td>" + items[i].user_member_tier + " </td>";
+//                        html += "<td>" + items[i].user_point + " </td>";
+//                        html += "<td><button type='button' name='View' data-bs-toggle='modal' onclick='return User_Details(" + items[i].user_account_id + ")' data-bs-target='#ModalView'   class='btn btn-success me-1'><i class='fas fa-eye'></i></button>   <a class='btn btn-warning me-2' href='/Admin/AccountUser/Edit/" + items[i].user_account_id + "') '><i class='fas fa-edit'></i></a>";
+//                        html += "<button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'> <i class='fas fa-trash-alt'></i> </button > " +
+//                            "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>" +
+//                            " <div class='modal-dialog'>" +
+//                            "<div class='modal-content'>" +
+//                            "<div class='modal-header'>" +
+//                            "<h5 class='modal-title' id='exampleModalLabel'>Thông Báo</h5>" +
+//                            "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>" +
+//                            "</div>" +
+//                            "<div class='modal-body'>" +
+//                            "Bạn có chắc muốn xóa?" +
+//                            "</div>" +
+//                            "<div class='modal-footer'>" +
+//                            "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>" +
+//                            "<button type='button' class='btn btn-danger' onclick='User_DeleteUser(" + items[i].user_account_id + ")'>Xóa</button>" +
+//                            "</div>" +
+//                            "</div>" +
+//                            "</div>" +
+//                            "</div>";
+//                        html += "</td>"
+//                        html += "</tr>";
 
 
-                    }
-                    $("#user-account-content").html(html);
+//                    }
+//                    $("#user-account-content").html(html);
 
-                }
-            }
-        }
-    )
-}
+//                }
+//            }
+//        }
+//    )
+//}
 
 function User_DeleteUser(idItem) {
 
