@@ -30,7 +30,10 @@ namespace NongSanDungHa.Controllers
             ViewBag.Category = Categories;
             return View();
         }
-
+        public ActionResult GioiThieu()
+        {
+            return View();
+        }
         public ActionResult Navigator()
         {
            
