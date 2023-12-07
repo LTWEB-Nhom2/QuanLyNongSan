@@ -53,71 +53,73 @@
         </th>
         <th></th>
     </tr>
-      <tbody id="user-account-content">
+    <tbody id="user-account-content">
+    </tbody>
+    @*@{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_phonenumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_member_tier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_point)
+                </td>
+                <td>
+                    <button type="button" name="View" data-bs-toggle="modal" onclick="return User_Details(@item.user_account_id)" data-bs-target="#ModalView" class="btn btn-success me-1"><i class="fas fa-eye"></i></button>
+                    <a class="btn btn-warning me-1" href="/Admin/AccountUser/Edit/@item.user_account_id"><i class="fas fa-edit"></i></a>
+                     Button trigger modal 
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
 
-      </tbody>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_phonenumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_lastname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_member_tier)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user_point)
-        </td>
-        <td>
-            <button type="button" name="View" data-bs-toggle="modal" onclick="return User_Details(@item.user_account_id)" data-bs-target="#ModalView" class="btn btn-success me-1"><i class="fas fa-eye"></i></button>
-            <a class="btn btn-warning me-1" href="/Admin/AccountUser/Edit/@item.user_account_id"><i class="fas fa-edit"></i></a>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i class="fas fa-trash-alt"></i>
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Bạn có chắc muốn xóa @item.user_username ?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type='button' class='btn btn-danger' onclick='User_DeleteUser(@item.user_account_id)'>Xóa</button>
+                     Modal 
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có chắc muốn xóa @item.user_username ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type='button' class='btn btn-danger' onclick='User_DeleteUser(@item.user_account_id)'>Xóa</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-        </td>
-    </tr>
-}
+                </td>
+            </tr>
+        }
+    }*@
 
 </table>
 <div class="modal fade" id="ModalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

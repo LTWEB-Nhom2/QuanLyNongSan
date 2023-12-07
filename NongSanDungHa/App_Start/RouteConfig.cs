@@ -18,6 +18,11 @@ namespace NongSanDungHa
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Admin_Defaults",
+                url: "Admin/{controller}/{action}/{id}",
+                defaults: new {controller ="Dashboard",action="Index",area ="Admin", id = UrlParameter.Optional}
+                );
         }
     }
 }

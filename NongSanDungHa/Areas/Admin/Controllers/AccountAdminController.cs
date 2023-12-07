@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using System.Security.Policy;
+
 namespace NongSanDungHa.Areas.Admin.Controllers
 {
     public class AccountAdminController : Controller
@@ -63,6 +65,38 @@ namespace NongSanDungHa.Areas.Admin.Controllers
 
             list.delete(id);
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public JsonResult GetData()
+        {
+            ListAdminAccount user = new ListAdminAccount();
+            List<admin_account> list = user.getData().ToList();
+            
+            return Json(new { data = list, TotalUser = list.Count() }, JsonRequestBehavior.AllowGet);
+        }
+        //Ajax
+        [HttpGet]
+        public JsonResult JsonDetail(int id)
+        {
+            ListAdminAccount list = new ListAdminAccount();
+            admin_account user = list.Details(id).SingleOrDefault();
+            
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult JsonDelete(int id)
+        {
+
+            ListAdminAccount list = new ListAdminAccount();
+
+            var rs = list.delete(id);
+            if (rs > 0)
+            {
+                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+
+
         }
     }
 }

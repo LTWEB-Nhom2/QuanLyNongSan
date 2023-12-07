@@ -43,7 +43,7 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             ListUser_Order list = new ListUser_Order();
-             user_order item = list.Details(id).FirstOrDefault();
+             user_order item = list.Details(id).SingleOrDefault();
 
             return View(item);
         }
@@ -69,5 +69,6 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             ViewBag.searchKey = searchKey;
             return View(lstSearch);
         }
+        
     }
 }

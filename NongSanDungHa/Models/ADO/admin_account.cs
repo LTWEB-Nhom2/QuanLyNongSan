@@ -130,16 +130,25 @@ namespace NongSanDungHa.Models.ADO
             cmd.Dispose();
             con.Close();
         }
-        public void delete(int id)
+        public int delete(int id)
         {
-            SqlConnection con = db.GetConnection();
-            con.Open();
-            string sql = "Delete from admin_account where admin_account_id = @id";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.Add("@id", id);
-            cmd.ExecuteNonQuery();
-            cmd.Dispose();
-            con.Close();
+            try
+            {
+                SqlConnection con = db.GetConnection();
+                con.Open();
+                string sql = "Delete from admin_account where admin_account_id = @id";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.Add("@id", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                con.Close();
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
+         
         }
 
     }

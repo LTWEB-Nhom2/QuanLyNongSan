@@ -168,17 +168,25 @@ namespace NongSanDungHa.Models.ADO
             con.Close();
         }
 
-        public void delete(int id)
+        public int delete(int id)
         {
-            SqlConnection con = db.GetConnection();
-            con.Open();
-            string sql = "Delete from user_order where user_order_id = @id";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.Clear();
-            cmd.Parameters.Add("@id", id);
-            cmd.ExecuteNonQuery();
-            cmd.Dispose();
-            con.Close();
+            try
+            {
+                SqlConnection con = db.GetConnection();
+                con.Open();
+                string sql = "Delete from user_order where user_order_id = @id";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.Clear();
+                cmd.Parameters.Add("@id", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                con.Close();
+                return 1;
+            }
+            catch {
+                return 0;
+            }
+         
         }
         public void insert(user_order item)
         {
