@@ -175,5 +175,28 @@ namespace NongSanDungHa.Controllers
                 
             return RedirectToAction("Payment", "Cart");
         }
+        //Ajax
+        [HttpPost]
+        public JsonResult AddToCart_JS(int product_id,double quantity)
+        {
+            try
+            {
+                var pro = db.products.SingleOrDefault(x => x.product_id == product_id);
+
+
+                if (pro != null)
+                {
+                    GetCart().Add(pro, quantity);
+                }
+
+                return Json(new { totalProduct = GetCart().Items.Count(),success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new { totalProduct = GetCart().Items.Count(), success = false }, JsonRequestBehavior.AllowGet) ;
+            }
+        
+        }
+        
     }
 }

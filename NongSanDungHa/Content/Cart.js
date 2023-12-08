@@ -38,3 +38,31 @@ $("#district").change(() => {
 $("#ward").change(() => {
     printResult();
 })
+
+
+//function AddToCart() {
+//    var countCartItem = document.getElementById("CountCartProduct");
+//    const _quantity = document.getElementById("value");
+//    const id = document.getElementById("product_id");
+//    var alert = document.getElementById("alertPaymentSuccess")
+//    $.ajax({
+//        url: '/Cart/AddToCart_JS',
+//        type: "POST",
+//        data: { product_id: id.value, quantity: _quantity.value },
+//        success: function (res) {
+//            if (res.success == true) {
+//                alert.style.display = "block";
+//                if (res.totalProduct > 0) {
+//                    countCartItem.textContent = res.totalProduct;
+//                }
+//            }
+//            else {
+//                alert.style.display = "none";
+//                countCartItem.textContent = 0;
+//            }
+
+           
+
+//        }
+//    })
+//}

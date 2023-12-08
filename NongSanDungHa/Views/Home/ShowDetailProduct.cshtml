@@ -139,7 +139,7 @@
             </div>
             <div class="row mt-3 mb-3" style="font-size: 22px">
                 <p class="mb-2">Bảng giá Hồ Chí Minh</p>
-                <form method="post" action="~/Cart/AddToCart">
+                @*<form method="post" action="~/Cart/AddToCart">*@
                     <table class="table" style="font-size: 20px">
                         <thead>
                             <tr>
@@ -154,7 +154,7 @@
 
                             <tr style="border-color:white; border-style:none">
                                 <th scope="row">1 kg</th>
-                                <input type="hidden" name="product_id" value="@Model.product_id" />
+                                <input type="hidden" id="product_id" name="product_id" value="@Model.product_id" />
                                 <td>@Model.product_price đ</td>
                                 <td>
                                     <div class="btn-group" style="width: 30%" role="group" aria-label="Basic example">
@@ -174,15 +174,22 @@
 
 
                     </table>
-                    <div class="button-cart">
-
-                        <button id="addToCart" type="submit" class="btn btn-danger">Thêm vào giỏ hàng</button>
-
+                    <div class="button-cart row">
+                        <div class="col-md-6">
+                            <button id="addToCart" type="button" class="btn btn-danger">Thêm vào giỏ hàng</button>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-success" id="alertPaymentSuccess" style="display:none" role="alert">
+                               Thêm vào giỏ hàng thành công
+                            </div>
+                        </div>
+                       
+                     
 
                     </div>
-                </form>
+                @*</form>*@
 
-
+                
             </div>
             <div class="row mt-3 mb-3">
                 <hr />
@@ -417,6 +424,7 @@
 <script>
     let count = 0;
     const value = document.getElementById("value");
+    const id = document.getElementById("product_id");
     const btns = document.querySelectorAll(".btnn");
     btns.forEach(function (btn) {
         btn.addEventListener("click", function (e) {
@@ -432,14 +440,42 @@
            
         })
     })
-
     const btnAddToCart = document.getElementById("addToCart");
     btnAddToCart.addEventListener("click", function (e) {
+  
         if (value.value == 0) {
             e.preventDefault();
             alert("Vui lòng chọn số kg từ 0.5kg trở lên");
+        } else {
+            var countCartItem = document.getElementById("CountCartProduct");
+            const _quantity = document.getElementById("value");
+            const id = document.getElementById("product_id");
+            var alertSuccess = document.getElementById("alertPaymentSuccess")
+          
+            $.ajax({
+                url: '/Cart/AddToCart_JS',
+                type: "POST",
+                data: { product_id: id.value, quantity: _quantity.value },
+                success: function (res) {
+                    if (res.success == true) {
+                        alertSuccess.style.display = "block";
+                        if (res.totalProduct > 0) {
+                            countCartItem.textContent = res.totalProduct;
+                        }
+                    }
+                    else {
+                        alertSuccess.style.display = "none";
+                        countCartItem.textContent = 0;
+                    }
+
+
+
+                }
+            })
         }
+        
            
+
     })
    
     
