@@ -32,6 +32,7 @@ namespace NongSanDungHa.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+
         public ActionResult Detail(int id)
         {
             ListUser_Order_Product order_product = new ListUser_Order_Product();
@@ -40,20 +41,22 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             ViewBag.Product = pro.getData().ToList();
             return View(listSP);
         }
-        public ActionResult Edit(int id)
+
+        public ActionResult Edit_User_order(int id)
         {
             ListUser_Order list = new ListUser_Order();
-             user_order item = list.Details(id).SingleOrDefault();
+            user_order item = list.Details(id).SingleOrDefault();
 
             return View(item);
         }
         [HttpPost]
-        public ActionResult Edit( user_order proRe)
+        public ActionResult Edit_User_order(user_order proRe)
         {
             ListUser_Order list = new ListUser_Order();
             list.update(proRe);
             return RedirectToAction("Index");
         }
+       
         public ActionResult Delete(int id)
         {
             ListUser_Order list = new ListUser_Order();

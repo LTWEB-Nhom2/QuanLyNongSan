@@ -53,12 +53,12 @@ namespace NongSanDungHa.Models.ADO
         [Required(ErrorMessage = "Không được để trống")]
         [StringLength(20)]
         [Display(Name = "Tình trạng đơn hàng")]
-        [RegularExpression(@"^[^0-9]*$", ErrorMessage = "Không được chưa kí tự số")]
+        [RegularExpression(@"^[^0-9]+$", ErrorMessage = "Không được chưa kí tự số")]
         public string is_processed { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         [StringLength(20)]
         [Display(Name = "Trình trạng vận chuyển")]
-        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Không được chưa kí tự số")]
+        [RegularExpression(@"^[^0-9]+$", ErrorMessage = "Không được chưa kí tự số")]
         public string is_delivered { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Tổng Tiền")]
@@ -68,7 +68,7 @@ namespace NongSanDungHa.Models.ADO
         [Required(ErrorMessage = "Không được để trống")]
         [Display(Name = "Phương thức thanh toán")]
         [StringLength(20)]
-        [RegularExpression("@^[^0-9]*$", ErrorMessage = "Không được chứa kí tự số")]
+        [RegularExpression(@"^[^0-9]+$", ErrorMessage = "Không được chứa kí tự số")]
         public string payments { get; set; }
     }
     public partial class ListUser_Order
