@@ -1,4 +1,6 @@
-﻿@model IEnumerable<NongSanDungHa.Models.ADO.product_discount_event>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList<NongSanDungHa.Models.ADO.product_discount_event>
 
 @{
     ViewBag.Title = "Index";
@@ -7,56 +9,66 @@
 
 <h2>Sự kiện khuyến mãi</h2>
 
-<p>
-    @Html.ActionLink("Thêm mới", "CreateNew")
-</p>
+<div class="d-flex w-100 justify-content-between mb-3">
+    <a class="btn btn-success" href="@Url.Action("CreateNew")"><i class="fas fa-plus"></i></a>
+</div>
 <p>
     Tổng số khuyến mãi: @ViewBag.TotalDiscount
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.discount_event_image)
+            @Html.DisplayName("Hình ảnh")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.discount_event_name)
+            @Html.DisplayName("Tên sự kiện")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.discount_event_description)
+            @Html.DisplayName("Nội dung sự kiện")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.discount_event_DateCreated)
+            @Html.DisplayName("Ngày bắt đầu")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.product_category_id)
+            @Html.DisplayName("Mã mặt hàng")
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img style="width: 200px; height: 200px" src="@item.discount_event_image" />
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img style="width: 200px; height: 200px" src="@item.discount_event_image" />
 
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.discount_event_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.discount_event_description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.discount_event_DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.product_category_id)
-        </td>
-        <td>
-            @Html.ActionLink("Sửa", "Edit", new { id = item.discount_event_id }) |
-            @Html.ActionLink("Chi tiết", "Detail", new { id = item.discount_event_id }) |
-            @Html.ActionLink("Xóa", "Delete", new { id = item.discount_event_id })
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discount_event_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discount_event_description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discount_event_DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.product_category_id)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Detail", new { id = item.discount_event_id }, new { @class = "fas fa-eye btn btn-success me-1" })
+                <br />
+                <br />
+                @Html.ActionLink(" ", "Edit", new { id = item.discount_event_id }, new { @class = "fas fa-edit btn btn-warning me-1" })
+                <br />
+                <br />
+                @Html.ActionLink(" ", "Delete", new { id = item.discount_event_id }, new { @class = "fas fa-trash-alt btn btn-danger me-1" })
+            </td>
+        </tr>
+    }
 
 </table>
+<nav aria-label="Page navigation example" style="display: flex;justify-content:center;align-items:center">
+    <ul class="pagination ">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item" } })
+    </ul>
+</nav>

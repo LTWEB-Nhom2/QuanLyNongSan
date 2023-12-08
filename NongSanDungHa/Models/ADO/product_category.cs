@@ -123,16 +123,14 @@ namespace NongSanDungHa.Models.ADO
             cmd.Dispose();
             con.Close();
         }
-        public List<product_category> search(string key)
+        public List<product_category> search(int key)
         {
             List<product_category> list = new List<product_category>();
 
-            string sql = "Select * from product_category where product_category_name like '%' + @searchKey + '%'";
+            string sql = "Select * from product_category where product_category_id = '"+ key + "' ";
             SqlConnection con = db.GetConnection();
             con.Open();
-
             SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.Add("@searchKey", key);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {

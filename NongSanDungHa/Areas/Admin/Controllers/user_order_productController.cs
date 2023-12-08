@@ -1,10 +1,13 @@
 ﻿using NongSanDungHa.Models.ADO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
+using PagedList.Mvc;
 namespace NongSanDungHa.Areas.Admin.Controllers
 {
     public class user_order_productController : Controller
@@ -12,12 +15,16 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         // GET: Admin/user_order_product
         DBConnection db = new DBConnection();
         // GET: Admin/product
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ListUser_Order_Product proRe = new ListUser_Order_Product();
             ViewBag.TotalUserOrderProduct = proRe.getData().Count();
-            List< user_order_product> list = proRe.getData().ToList();
-            return View(list);
+            List<user_order_product> list = proRe.getData().ToList();
+            //Page List
+            int pageSize = 8;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var lst = new PagedList<user_order_product>(list, pageNumber, pageSize);
+            return View(lst);
         }
         public ActionResult CreateNew()
         {
@@ -25,7 +32,7 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateNew( user_order_product proRe)
+        public ActionResult CreateNew(user_order_product proRe)
         {
             ListUser_Order_Product list = new ListUser_Order_Product();
             list.insert(proRe);
@@ -35,18 +42,18 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult Detail(int id, int product_id)
         {
             ListUser_Order_Product list = new ListUser_Order_Product();
-             user_order_product proRe = list.Details(id, product_id).FirstOrDefault();
+            user_order_product proRe = list.Details(id, product_id).FirstOrDefault();
             return View(proRe);
         }
         public ActionResult Edit(int id, int product_id)
         {
             ListUser_Order_Product list = new ListUser_Order_Product();
-             user_order_product item = list.Details(id, product_id).FirstOrDefault();
+            user_order_product item = list.Details(id, product_id).FirstOrDefault();
 
             return View(item);
         }
         [HttpPost]
-        public ActionResult Edit( user_order_product proRe)
+        public ActionResult Edit(user_order_product proRe)
         {
             ListUser_Order_Product list = new ListUser_Order_Product();
             list.update(proRe);

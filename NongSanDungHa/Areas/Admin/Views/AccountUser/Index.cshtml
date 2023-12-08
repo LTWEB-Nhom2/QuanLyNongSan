@@ -1,5 +1,6 @@
-﻿@model IEnumerable<NongSanDungHa.Models.ADO.user_account>
-
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList<NongSanDungHa.Models.ADO.user_account>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
@@ -22,34 +23,34 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.user_username)
+            @Html.DisplayName("Tên tài khoản")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_password)
+            @Html.DisplayName("Mật khẩu")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_gender)
+            @Html.DisplayName("Giới tính")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_email)
+            @Html.DisplayName("Email")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_phonenumber)
+            @Html.DisplayName("SĐT")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_address)
+            @Html.DisplayName("Địa chỉ")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_firstname)
+            @Html.DisplayName("Tên")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_lastname)
+            @Html.DisplayName("Họ")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_member_tier)
+            @Html.DisplayName("Hạng")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_point)
+            @Html.DisplayName("Điểm")
         </th>
         <th></th>
     </tr>
@@ -133,62 +134,61 @@
                 <dl class="dl-horizontal">
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.user_username)
+                        @Html.DisplayName("Tên tài khoản")
                     </dt>
                     <dd>
                         <input type="hidden" id="user_id" />
                         <input type="text" id="username" class="form-control" />
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.user_password)
+                        @Html.DisplayName("Mật khẩu")
                     </dt>
                     <dd>
                         <input type="text" id="password" class="form-control" />
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.user_firstname)
+                        @Html.DisplayName("Giới tính")
                     </dt>
                     <dd>
                         <input type="text" id="firstname" class="form-control" />
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.user_lastname)
+                        @Html.DisplayName("Email")
                     </dt>
                     <dd>
                         <input type="text" id="lastname" class="form-control" />
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.user_gender)
+                        @Html.DisplayName("SĐT")
                     </dt>
                     <dd>
                         <input type="text" id="gender" class="form-control" />
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.user_address)
+                        @Html.DisplayName("Địa chỉ")
                     </dt>
                     <dd>
                         <input type="text" id="address" class="form-control" />
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.user_email)
+                        @Html.DisplayName("Tên")
                     </dt>
                     <dd>
                         <input type="email" id="email" class="form-control" />
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.user_phonenumber)
+                        @Html.DisplayName("Họ")
                     </dt>
                     <dd>
                         <input type="number" id="phonenumber" class="form-control" />
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.user_member_tier)
-                    </dt>
+                        @Html.DisplayName("Hạng")
                     <dd>
                         <input type="text" id="tier" class="form-control" />
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.user_point)
+                         @Html.DisplayName("Điểm")
                     </dt>
                     <dd>
                         <input type="number" id="point" class="form-control" />
@@ -202,3 +202,8 @@
         </div>
     </div>
 </div>
+<nav aria-label="Page navigation example" style="display: flex;justify-content:center;align-items:center">
+    <ul class="pagination ">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item" } })
+    </ul>
+</nav>

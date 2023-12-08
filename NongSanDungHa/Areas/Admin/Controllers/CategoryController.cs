@@ -1,9 +1,13 @@
 ﻿using NongSanDungHa.Models.ADO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace NongSanDungHa.Areas.Admin.Controllers
 {
@@ -12,12 +16,16 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         // GET: Admin/Category
         DBConnection db = new DBConnection();
         // GET: Admin/product
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ListProductCategory pro = new ListProductCategory();
             ViewBag.TotalCategory = pro.getData().Count();
-            List< product_category> list = pro.getData().ToList();
-            return View(list);
+            List<product_category> list = pro.getData().ToList();
+            //Page List
+            int pageSize = 8;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var lst = new PagedList<product_category>(list, pageNumber, pageSize);
+            return View(lst);
         }
         public ActionResult CreateNew()
         {
@@ -59,7 +67,7 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             list.delete(id);
             return RedirectToAction("Index");
         }
-        public ActionResult SearchResult(string searchKey)
+        public ActionResult SearchResult(int searchKey)
         {
             ListProductCategory list = new ListProductCategory();
             List<product_category> lstSearch = list.search(searchKey).ToList();

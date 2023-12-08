@@ -1,14 +1,18 @@
-﻿@model IEnumerable<NongSanDungHa.Models.ADO.product_category>
-
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList<NongSanDungHa.Models.ADO.product_category>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
 
 <h2>Loại hàng</h2>
+<div class="d-flex w-100 justify-content-between mb-3">
+    <a class="btn btn-success" href="@Url.Action("CreateNew")"><i class="fas fa-plus"></i></a>
+</div>
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/Admin/Category/SearchResult" method="get">
     <div class="input-group">
-        <input type="search" class="form-control bg-light border-0 small" placeholder="Search by name"
+        <input type="search" class="form-control bg-light border-0 small" placeholder="Search by id"
                aria-label="Search" aria-describedby="basic-addon2" name="searchKey">
         <div class="input-group-append">
             <button class="btn btn-primary" style="background-color: #52a851;" type="submit" name="submit">
@@ -18,21 +22,18 @@
     </div>
 </form>
 <p>
-    @Html.ActionLink("Thêm mới", "CreateNew")
-</p>
-<p>
     Tổng loại mặt hàng: @ViewBag.TotalCategory
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.product_category_id)
+            @Html.DisplayName("Mã loại hàng")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.product_category_name)
+            @Html.DisplayName("Tên loại hàng")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.product_category_description)
+            @Html.DisplayName("Mô tả")
         </th>
         <th></th>
     </tr>
@@ -50,11 +51,16 @@
                 @Html.DisplayFor(modelItem => item.product_category_description)
             </td>
             <td>
-                @Html.ActionLink("Sửa", "Edit", new { id = item.product_category_id }) |
-                @Html.ActionLink("Chi tiết", "Detail", new { id = item.product_category_id }) |
-                @Html.ActionLink("Xóa", "Delete", new { id = item.product_category_id })
+                @Html.ActionLink(" ", "Detail", new { id = item.product_category_id }, new { @class = "fas fa-eye btn btn-success me-1" }) 
+                @Html.ActionLink(" ", "Edit", new { id = item.product_category_id }, new { @class = "fas fa-edit btn btn-warning me-1" }) 
+                @Html.ActionLink(" ", "Delete", new { id = item.product_category_id }, new { @class = "fas fa-trash-alt btn btn-danger me-1" })
             </td>
         </tr>
     }
 
 </table>
+<nav aria-label="Page navigation example" style="display: flex;justify-content:center;align-items:center">
+    <ul class="pagination ">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item" } })
+    </ul>
+</nav>

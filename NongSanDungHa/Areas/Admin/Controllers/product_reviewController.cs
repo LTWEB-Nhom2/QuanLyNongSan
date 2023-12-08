@@ -1,9 +1,13 @@
 ﻿using NongSanDungHa.Models.ADO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace NongSanDungHa.Areas.Admin.Controllers
 {
@@ -12,12 +16,16 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         // GET: Admin/product_review
         DBConnection db = new DBConnection();
         // GET: Admin/product
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ListProduct_review proRe = new ListProduct_review();
             ViewBag.TotalProductReview = proRe.getData().Count();
             List< product_review> list = proRe.getData().ToList();
-            return View(list);
+            //Page List
+            int pageSize = 8;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var lst = new PagedList<product_review>(list, pageNumber, pageSize);
+            return View(lst);
         }
         public ActionResult CreateNew()
         {

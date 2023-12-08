@@ -1,9 +1,13 @@
 ﻿using NongSanDungHa.Models.ADO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace NongSanDungHa.Areas.Admin.Controllers
 {
@@ -12,12 +16,16 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         // GET: Admin/user_order
         DBConnection db = new DBConnection();
         // GET: Admin/product
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ListUser_Order proRe = new ListUser_Order();
             ViewBag.TotalUserOrder = proRe.getData().Count();
-            List< user_order> list = proRe.getData().ToList();
-            return View(list);
+            List<user_order> list = proRe.getData().ToList();
+            //Page List
+            int pageSize = 8;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var lst = new PagedList<user_order>(list, pageNumber, pageSize);
+            return View(lst);
         }
         public ActionResult CreateNew()
         {
@@ -25,7 +33,7 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateNew( user_order proRe)
+        public ActionResult CreateNew(user_order proRe)
         {
             ListUser_Order list = new ListUser_Order();
             list.insert(proRe);
@@ -43,12 +51,12 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             ListUser_Order list = new ListUser_Order();
-             user_order item = list.Details(id).SingleOrDefault();
+            user_order item = list.Details(id).SingleOrDefault();
 
             return View(item);
         }
         [HttpPost]
-        public ActionResult Edit( user_order proRe)
+        public ActionResult Edit(user_order proRe)
         {
             ListUser_Order list = new ListUser_Order();
             list.update(proRe);
@@ -69,6 +77,6 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             ViewBag.searchKey = searchKey;
             return View(lstSearch);
         }
-        
+
     }
 }

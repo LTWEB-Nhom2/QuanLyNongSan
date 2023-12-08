@@ -58,13 +58,11 @@ namespace NongSanDungHa.Models.ADO
             return list;
 
         }
-        public List<product_image> getImageProduct(int id_product)
+        public List<product_image> getImageProduct(int product_image_id)
         {
             string sql;
 
-            sql = "Select * from product_image where product_id = " + id_product;
-
-
+            sql = "Select * from product_image where product_image_id = " + product_image_id;
             List<product_image> list = new List<product_image>();
             SqlConnection con = db.GetConnection();
             con.Open();
