@@ -29,8 +29,13 @@ namespace NongSanDungHa.Controllers
         public ActionResult Index()
         {
            
+           
+            return View();
+        }
+        public ActionResult Cart_Items()
+        {
             Cart cart = Session["Cart"] as Cart;
-            return View(cart);
+            return PartialView(cart);
         }
         [HttpPost]
         public ActionResult AddToCart(int product_id, double quantity)
@@ -198,5 +203,53 @@ namespace NongSanDungHa.Controllers
         
         }
         
+        [HttpPost]
+        public JsonResult RemoveCartItems_JS(int product_id)
+        {
+            var pro = db.products.SingleOrDefault(x => x.product_id == product_id);
+          
+            if (pro != null && GetCart().Items.Count() == 1)
+            {
+                GetCart().Delete(pro.product_id);
+
+                Session["Cart"] = null;
+                return Json(new { totalProduct = 0 }, JsonRequestBehavior.AllowGet);
+            }
+            else 
+            {
+                GetCart().Delete(pro.product_id);
+                return Json(new { totalProduct = GetCart().Items.Count() }, JsonRequestBehavior.AllowGet);
+            }
+          
+        }
+        [HttpPost]
+        public JsonResult RemoveAllCartItems_JS()
+        {
+           
+
+            Session["Cart"] = null;
+            return Json(new {totalProduct = 0},JsonRequestBehavior.AllowGet);
+
+        }
+        [HttpPost]
+        public JsonResult Update_Quantity_Increase_JSON(int product_id, double quantity)
+        {
+            var pro = db.products.SingleOrDefault(x => x.product_id == product_id);
+            if (pro != null)
+            {
+                GetCart().Update_Quantity_Increase(pro.product_id, quantity);
+            }
+            return Json(JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult Update_Quantity_Decrease_JS(int product_id, double quantity)
+        {
+            var pro = db.products.SingleOrDefault(x => x.product_id == product_id);
+            if (pro != null)
+            {
+                GetCart().Update_Quantity_Decrease(pro.product_id, quantity);
+            }
+            return Json(JsonRequestBehavior.AllowGet);
+        }
     }
 }

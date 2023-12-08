@@ -1289,6 +1289,7 @@
     <Content Include="Views\Cart\DetailCart.cshtml" />
     <Content Include="Views\Cart\DetailCartItems.cshtml" />
     <Content Include="Views\Home\GioiThieu.cshtml" />
+    <Content Include="Views\Cart\Cart_Items.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

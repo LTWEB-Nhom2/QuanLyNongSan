@@ -38,8 +38,73 @@ $("#district").change(() => {
 $("#ward").change(() => {
     printResult();
 })
+const btnDelete = document.getElementById("deleteBTN");
+btnDelete.addEventListener("click", function (e) { 
+   
+})
+function Remove() {
+    const id = document.getElementById("product_id").value;
+   
+    var countCartItem = document.getElementById("CountCartProduct");
+    $.ajax({
+        url: "/Cart/RemoveCartItems_JS",
+        data: { product_id: id },
+        type: "POST",
+        success: function (res) {
+            $('#trow_' + id).remove();
+            LoadCart();
+            countCartItem.textContent = res.totalProduct;
+        }
+    });
+}
+function RemoveAll() {
+    $.ajax({
+        url: "/Cart/RemoveAllCartItems_JS",
+        type: "POST",
+        success: function (res) {
+            
+            LoadCart();
+           
+        }
+    })
+}
+function LoadCart() {
+    $.ajax({
+        url: "/Cart/Cart_Items",
+        type: "GET",
+        success: function (res) {
+            $("#CartContent").html(res);
+        }
+    })
+}
+function UpdateQuantityIncrease(id) {
+    const value = document.getElementById("" + id +"").value;
+   console.log(id)
 
 
+    $.ajax({
+        url: "/Cart/Update_Quantity_Increase_JSON",
+        data: { product_id: id, quantity: value },
+        type: "POST",
+        success: function (res) {
+            LoadCart();
+        }
+
+    })
+}
+function UpdateQuantityDecrease(id) {
+    const value = document.getElementById("" + id + "").value;
+   console.log(id)
+    $.ajax({
+        url: "/Cart/Update_Quantity_Decrease_JS",
+        data: { product_id: id, quantity: value },
+        type: "POST",
+        success: function (res) {
+            LoadCart();
+        }
+
+    })
+}
 //function AddToCart() {
 //    var countCartItem = document.getElementById("CountCartProduct");
 //    const _quantity = document.getElementById("value");
