@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace NongSanDungHa.Areas.Admin.Controllers
 {
@@ -14,12 +16,16 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         // GET: Admin/product_image
         DBConnection db = new DBConnection();
         // GET: Admin/product
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ListProductImage proImg = new ListProductImage();
             ViewBag.TotalProductImage = proImg.getData().Count();
-            List< product_image> list = proImg.getData().ToList();
-            return View(list);
+            List<product_image> list = proImg.getData().ToList();
+            //Page List
+            int pageSize = 8;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var lst = new PagedList<product_image>(list, pageNumber, pageSize);
+            return View(lst);
         }
         public ActionResult CreateNew()
         {

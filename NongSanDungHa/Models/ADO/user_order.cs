@@ -233,10 +233,10 @@ namespace NongSanDungHa.Models.ADO
                 con.Close();
             }
         }
-        public List<user_order> getUserOrder(int user_account_id)
+        public List<user_order> getUserOrder(int user_order_id)
         {
             string sql;
-            sql = "Select * from user_order where user_account_id = " + user_account_id;
+            sql = "Select * from user_order where user_order_id = " + user_order_id;
             List<user_order> list = new List<user_order>();
             SqlConnection con = db.GetConnection();
             con.Open();

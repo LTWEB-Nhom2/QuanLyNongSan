@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewBag.Title = "ChuyenVien";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuyển dụng Marketing</title>
+    <!-- Link đến Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Thêm CSS tùy chỉnh nếu cần */
+        .job-details {
+            margin-top: 20px;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .toc-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .toc-list {
+            display: none;
+        }
+
+            .toc-list a {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+        .job-info,
+        .job-description,
+        .job-requirements,
+        .contact-details {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 style="color:forestgreen;font-weight:bold">NHÂN VIÊN/CHUYÊN VIÊN SEO - MARKETING</h2>
+        <hr />
+        <button class="toc-button" onclick="toggleToc()">Mục lục</button>
+
+        <div class="toc-list" id="tocList">
+            <a href="#job-info">THÔNG TIN TUYỂN DỤNG</a>
+            <a href="#job-description">MÔ TẢ CÔNG VIỆC</a>
+            <a href="#QuyenLoi">QUYỀN LỢI ĐƯỢC HƯỞNG</a>
+            <a href="#job-requirements">YÊU CẦU CÔNG VIỆC</a>
+            <a href="#contact-details">THÔNG TIN LIÊN HỆ</a>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9">
+                <div id="job-info" class="job-info">
+                    <h3 style="color: forestgreen; font-weight: bold">THÔNG TIN TUYỂN DỤNG</h3>
+                    <h6><strong>Mức lương:</strong> 8 – 10 triệu</h6>
+                    <h6><strong>Kinh nghiệm:</strong> 1 năm</h6>
+                    <h6><strong>Yêu cầu bằng cấp:</strong> Không yêu cầu bằng cấp</h6>
+                    <h6><strong>Số lượng cần tuyển:</strong> 2</h6>
+                    <h6><strong>Ngành nghề:</strong> Marketing-PR</h6>
+                    <h6><strong>Địa điểm làm việc:</strong> Hà Nội</h6>
+                    <h6><strong>Chức vụ:</strong> Chuyên viên - Nhân viên</h6>
+                    <h6><strong>Hình thức làm việc:</strong> Toàn thời gian cố định</h6>
+                    <h6><strong>Thời gian thử việc:</strong> 1 tháng</h6>
+                    <h6><strong>Yêu cầu giới tính:</strong> Nam/Nữ</h6>
+                    <h6><strong>Yêu cầu độ tuổi:</strong> Không yêu cầu độ tuổi</h6>
+                </div>
+                <!-- Thêm các thông tin khác ở đây -->
+
+                <div id="job-description" class="job-description">
+                    <h3 style="color: forestgreen; font-weight: bold">MÔ TẢ CÔNG VIỆC</h3>
+                    <p style="font-size:16px">
+                        - Nghiên cứu từ khóa và dự án<br>
+                        - Tối ưu chuẩn SEO, ONPAGE<br>
+                        - Biết thiết kế cơ bản qua pts (tư vấn hoặc trực tiếp làm lên ấn phẩm bắt mắt phù hợp với ngữ cảnh content)<br>
+                        - Biết quản trị wordpress cơ bản, chỉnh sửa các file robots, xml sitemaps để phù hợp với các site vệ tinh<br>
+                        - Biết sử dụng các công cụ như: ahrefs, webmaster, gg analytics,...<br>
+                        - Xây dựng liên kết bền vững, biết các cách kéo traffic hiện nay<br>
+                        - Lập kế hoạch SEO các dự án, viết bài chuẩn seo, chuẩn sales<br>
+                        - Biết quản trị Google Adwords và Facebook Ads là lợi thế (không biết được đào tạo)<br>
+                        - Báo cáo, đo lường, đánh giá dự án
+                    </p>
+                </div>
+                <div id="QuyenLoi" class="job-description">
+                    <h3 style="color: forestgreen; font-weight: bold">QUYỀN LỢI ĐƯỢC HƯỞNG</h3>
+                    <p style="font-size:16px">
+                        - Được đóng BHXH, BHYT, BHTN. <br />
+                        - Lương thưởng theo năng lực, theo traffic và chuyển đổi đơn hàng<br />
+                        - Được hưởng các chính sách phúc lợi theo quy định của công ty.<br />
+                        - Được đào tạo, nâng cao nghiệp vụ thường xuyên.YÊU CẦU KHÁC<br />
+                        – Có nền tảng về quản trị, xây dựng website<br />
+                        - Ham học hỏi, đam mê trong lĩnh vực Truyền thông – Marketing<br />
+                    </p>
+                </div>
+                <div id="job-requirements" class="job-description">
+                    <h2 style="color: forestgreen; font-weight: bold">YÊU CẦU CÔNG VIỆC</h2>
+                    <p style="font-size:16px">
+                        - Linh hoạt, nhạy bén, có khả năng phân tích logic<br />
+                        - Có khả năng làm việc nhóm và độc lập, tự chủ trong công việc.<br />
+                        - Kinh nghiệm SEO 1 năm trở lên<br />
+                    </p>
+                </div>
+                <div id="contact-details" class="job-description">
+                    <h3 style="color:forestgreen;font-weight:bold">THÔNG TIN LIÊN HỆ</h3>
+                    <p style="font-size:16px">
+                        <h6><strong>NGƯỜI LIÊN HỆ:</strong> Nguyễn Kế Bảo</h6>
+                        <h6><strong>ĐỊA CHỈ LIÊN HỆ:</strong> Cs1: A11 Ngõ 100 Trung Kính Cầu Giấy Hà Nội, Cs2: 683 Giải phóng, phường Giáp Bát, quận Hoàng Mai, Tp. Hà Nội</h6>
+                        <h6><strong>Văn phòng hành chính:</strong> 2 ngách 10 ngo 254 Nguyễn Khang quận Cầu Giấy Tp. Hà Nội</h6>
+                        <h6><strong>EMAIL LIÊN HỆ:</strong> baonguyen301103@gmail.com</h6>
+                        <h6><strong>SỐ ĐIỆN THOẠI:</strong> 0344811351</h6>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <p style="background-color:forestgreen;color:white;padding:10px;font-size:15px;font-weight:bold">THAM GIA NHÓM ZALO CẬP NHẬT GIÁ SĨ HẰNG NGÀY</p>
+                <img src="https://admin.nongsandungha.com/wp-content/uploads/2022/07/18df98c649718a2fd360.jpg" alt="Cửa hàng nông sản" class="img-fluid rounded">
+                <br />
+                <br />
+                <p style="background-color:forestgreen;color:white;padding:10px;font-size:15px;font-weight:bold">DŨNG HÀ TRÊN ZALO</p>
+                <p style="text-align:center">Hãy theo dõi Dũng Hà để nhận khuyến mãi hàng tuần</p>
+                <img src="https://admin.nongsandungha.com/wp-content/uploads/2022/07/qr-code-zalo.jpg" alt="Cửa hàng nông sản" class="img-fluid rounded">
+
+            </div>
+        </div>
+        <!-- Thêm các phần khác tương tự ở đây -->
+
+    </div>
+
+    <!-- Link đến Bootstrap JS và jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function toggleToc() {
+            var tocList = document.getElementById('tocList');
+            tocList.style.display = (tocList.style.display === 'none' || tocList.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+
+</body>
+</html>
+
+
+

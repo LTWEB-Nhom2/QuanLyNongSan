@@ -1,4 +1,5 @@
 ﻿using NongSanDungHa.Models.ADO;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,16 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         // GET: Admin/AccountUser
         DBConnection db = new DBConnection();
         
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ListUserAccount user = new ListUserAccount();
             ViewBag.TotalUser = user.getData().Count();
             List<user_account> list = user.getData().ToList();
-            return View(list);
+            //Page List
+            int pageSize = 8;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var lst = new PagedList<user_account>(list, pageNumber, pageSize);
+            return View(lst);
         }
         public ActionResult CreateNew()
         {

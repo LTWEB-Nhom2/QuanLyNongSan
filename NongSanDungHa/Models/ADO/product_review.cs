@@ -137,10 +137,10 @@ namespace NongSanDungHa.Models.ADO
             cmd.Dispose();
             con.Close();
         }
-        public List<product_review> getProductReview(int user_account_id)
+        public List<product_review> getProductReview(int product_review_id)
         {
             string sql;
-            sql = "Select * from product_review where user_account_id = " + user_account_id;
+            sql = "Select * from product_review where product_review_id = " + product_review_id;
             List<product_review> list = new List<product_review>();
             SqlConnection con = db.GetConnection();
             con.Open();

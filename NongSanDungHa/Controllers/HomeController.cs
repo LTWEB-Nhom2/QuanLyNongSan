@@ -21,7 +21,6 @@ namespace NongSanDungHa.Controllers
         // GET: Home
         public ActionResult Index()
         {   
-          
             List<product_discount_event> DiscountEvent = db.product_discount_events.Take(4).ToList();
             List<product> products = db.products.ToList();
             List<product_category> Categories = db.product_categories.ToList();
@@ -34,6 +33,23 @@ namespace NongSanDungHa.Controllers
         {
             return View();
         }
+        public ActionResult ThanhToan()
+        {
+            return View();
+        }
+        public ActionResult LienHe()
+        {
+
+            return View();
+        }
+        public ActionResult QuaBieuQuaTet()
+        {
+            List<product> products = db.products.ToList();
+            List<product_category> Categories = db.product_categories.ToList();
+            ViewBag.products = products;
+            ViewBag.Category = Categories;
+            return View();
+        }    
         public ActionResult Navigator()
         {
            

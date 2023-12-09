@@ -80,16 +80,14 @@ namespace NongSanDungHa.Models.ADO
             return list;
 
         }
-        public List<product> search(string key)
+        public List<product> search(int id_product)
         {
             List<product> list = new List<product>();
 
-            string sql = "Select * from product where product_name like '%' + @searchKey + '%'";
+            string sql = "Select * from product where product_id = '"+id_product+"'";
             SqlConnection con = db.GetConnection();
             con.Open();
-
             SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.Add("@searchKey", key);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
