@@ -1,0 +1,46 @@
+﻿@model IEnumerable<NongSanDungHa.Models.ADO.admin_account>
+
+@{
+    ViewBag.Title = "SearchResult";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>SearchResult</h2>
+<div class="col-md-12 mb-4">
+    <h1 style="color: #28a745">Bạn tìm tài khoản: "@ViewBag.searchKey"</h1>
+</div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.admin_username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.admin_password)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.admin_username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.admin_password)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.admin_account_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.admin_account_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.admin_account_id })
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Trở về danh sách", "Index")
+</div>

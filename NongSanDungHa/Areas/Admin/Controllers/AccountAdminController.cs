@@ -74,6 +74,14 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             
             return Json(new { data = list, TotalUser = list.Count() }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult SearchResult(int searchKey)
+        {
+            ListAdminAccount list = new ListAdminAccount();
+            List<admin_account> lstSearch = list.search(searchKey).ToList();
+            ViewBag.searchKey = searchKey;
+            return View(lstSearch);
+        }
         //Ajax
         [HttpGet]
         public JsonResult JsonDetail(int id)

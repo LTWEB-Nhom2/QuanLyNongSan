@@ -194,6 +194,36 @@ namespace NongSanDungHa.Models.ADO
             con.Close();
             return list;
         }
+
+        public List<user_account> search(int user_account_id)
+        {
+            List<user_account> list = new List<user_account>();
+
+            string sql = "Select * from user_account where user_account_id = '" + user_account_id + "'";
+            SqlConnection con = db.GetConnection();
+            con.Open();
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                user_account item = new user_account();
+                item.user_account_id = int.Parse(dr["user_account_id"].ToString());
+                item.user_username = dr["user_username"].ToString();
+                item.user_password = dr["user_password"].ToString();
+                item.user_gender = dr["user_gender"].ToString();
+                item.user_email = dr["user_email"].ToString();
+                item.user_phonenumber = dr["user_phonenumber"].ToString();
+                item.user_address = dr["user_address"].ToString();
+                item.user_firstname = dr["user_firstname"].ToString();
+                item.user_lastname = dr["user_lastname"].ToString();
+                item.user_member_tier = dr["user_member_tier"].ToString();
+                item.user_point = int.Parse(dr["user_point"].ToString());
+                list.Add(item);
+            }
+            con.Close();
+            return list;
+
+        }
         public int update(user_account item)
         {
             try

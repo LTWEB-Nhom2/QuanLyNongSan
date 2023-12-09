@@ -1245,8 +1245,10 @@
     <Content Include="Areas\Admin\Views\Category\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\user_order_product\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\product_review\SearchResult.cshtml" />
-    <Content Include="Areas\Admin\Views\user_order\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\user_order\Edit_User_order.cshtml" />
+    <Content Include="Areas\Admin\Views\user_order\SearchResult.cshtml" />
+    <Content Include="Areas\Admin\Views\AccountUser\SearchResult.cshtml" />
+    <Content Include="Areas\Admin\Views\AccountAdmin\SearchResult.cshtml" />
     <None Include="Models\DBNongSanDungHa.dbml.layout">
       <DependentUpon>DBNongSanDungHa.dbml</DependentUpon>
     </None>

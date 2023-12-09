@@ -114,6 +114,28 @@ namespace NongSanDungHa.Models.ADO
             con.Close();
             return list;
         }
+
+        public List<admin_account> search(int admin_account_id)
+        {
+            List<admin_account> list = new List<admin_account>();
+
+            string sql = "Select * from admin_account where admin_account_id = '" + admin_account_id + "'";
+            SqlConnection con = db.GetConnection();
+            con.Open();
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                admin_account item = new admin_account();
+                item.admin_account_id = int.Parse(dr["admin_account_id"].ToString());
+                item.admin_username = dr["admin_username"].ToString();
+                item.admin_password = dr["admin_password"].ToString();
+                list.Add(item);
+            }
+            con.Close();
+            return list;
+
+        }
         public void update( admin_account item)
         {
 
