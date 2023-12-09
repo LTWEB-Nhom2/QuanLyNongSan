@@ -1296,6 +1296,7 @@
     <Content Include="Views\TuyenDung\ChuyenVien.cshtml" />
     <Content Include="Views\Home\ThanhToan.cshtml" />
     <Content Include="Views\Home\LienHe.cshtml" />
+    <Content Include="Views\Home\QuaBieuQuaTet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
