@@ -83,8 +83,8 @@
 
             <td>
 
-                @Html.ActionLink("Chi tiết", "Detail", new { id = item.user_order_id }) |
-                @Html.ActionLink("Xóa", "Delete", new { id = item.user_order_id })
+                @Html.ActionLink(" ", "Detail", new { id = item.user_order_id }, new {@class = "btn btn-success fas fa-eye me-2" }) 
+                @Html.ActionLink(" ", "Delete", new { id = item.user_order_id }, new {@class = "btn btn-danger fas fa-trash-alt" })
             </td>
         </tr>
     }

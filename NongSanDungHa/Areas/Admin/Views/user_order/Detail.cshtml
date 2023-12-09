@@ -64,7 +64,7 @@
   
 <div class="d-flex w-100 justify-content-between">
     <p> @Html.ActionLink("Trở về", "Index", "user_order", new { @class = "btn btn-success" })</p>
-   
-    <p style="text-align:end;font-size:25px;font-weight:bold;color:red">Tổng Thành Tiền :  @string.Format("{0:0,0.000} đ", TongThanhTien)</p>
+    <p style="text-align:end;font-size:25px;font-weight:bold;">Phí Vận Chuyển : 30.000 đ</p>
+    <p style="text-align:end;font-size:25px;font-weight:bold;color:red">Tổng Thành Tiền :  @string.Format("{0:0,0.000} đ", TongThanhTien+30)</p>
 </div>
 

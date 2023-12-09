@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
 using System.Security.Policy;
+using Antlr.Runtime;
 
 namespace NongSanDungHa.Areas.Admin.Controllers
 {
@@ -35,9 +36,19 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult CreateNew( admin_account user)
         {
             ListAdminAccount list = new ListAdminAccount();
-            list.CreateAdminAccount(user);
-
-            return RedirectToAction("Index");
+            var rs = list.CreateAdminAccount(user);
+            ViewBag.KT = 0;
+            if (rs == -1)
+            {
+                ViewBag.KT = -1;
+                ViewBag.ErrorMessage = "Tài khoản đã tồn tại";
+            }
+            else
+            {
+                ViewBag.KT = 1;
+                ViewBag.ErrorMessage = "Tạo thành công tài khoản";
+            }
+            return View();
         }
         public ActionResult Detail(int id)
         {
@@ -62,9 +73,23 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             ListAdminAccount list = new ListAdminAccount();
+            admin_account admin = list.Details(id).FirstOrDefault();
+            return View(admin);
+        }
+        [HttpPost]
+        public ActionResult Delete(admin_account admin)
+        {
+            ListAdminAccount list = new ListAdminAccount();
 
-            list.delete(id);
-            return RedirectToAction("Index");
+            var rs = list.delete(admin.admin_account_id);
+            if (rs == 1)
+            {
+                return RedirectToAction("Index");
+            }
+            admin_account ad = list.Details(admin.admin_account_id).FirstOrDefault();
+            ViewBag.KT = 0;
+            ViewBag.Message = "Xóa Thất bại";
+            return View(ad);
         }
         [HttpGet]
         public JsonResult GetData()

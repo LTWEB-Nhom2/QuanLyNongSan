@@ -29,10 +29,9 @@
         </th>
         <th></th>
     </tr>
-    <tbody id="admin-account-content">
-    </tbody>
-    @*@{
-        @foreach (var item in Model)
+
+    @{
+        foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -44,33 +43,13 @@
                 <td>
                     <button type="button" name="View" data-bs-toggle="modal" onclick="return Admin_Details(@item.admin_account_id)" data-bs-target="#ModalView" class="btn btn-success me-1"><i class="fas fa-eye"></i></button>
                     <a class="btn btn-warning me-1" href="/Admin/AccountAdmin/Edit/@item.admin_account_id"><i class="fas fa-edit"></i></a>
-                     Button trigger modal 
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-
-                     Modal 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Bạn có chắc muốn xóa @item.admin_username ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type='button' class='btn btn-danger' onclick='Admin_DeleteAdmin(@item.admin_account_id)'>Xóa</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    <a class="btn btn-danger" href="/Admin/AccountAdmin/Delete/@item.admin_account_id"><i class="fas fa-trash-alt"></i> </a>
+                  
                 </td>
             </tr>
         }
-    }*@
+    }
 
 
 </table>

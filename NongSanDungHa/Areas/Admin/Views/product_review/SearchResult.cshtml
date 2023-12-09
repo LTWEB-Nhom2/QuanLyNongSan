@@ -42,9 +42,9 @@
                 @Html.DisplayFor(modelItem => item.review_owner)
             </td>
             <td>
-                @Html.ActionLink("Sửa", "Edit", new { id = item.product_review_id }) |
-                @Html.ActionLink("Chi tiết", "Detail", new { id = item.product_review_id }) |
-                @Html.ActionLink("Xóa", "Delete", new { id = item.product_review_id })
+               
+                @Html.ActionLink(" ", "Detail", new { id = item.product_review_id }, new { @class = "fas fa-eye btn btn-success me-1" }) 
+                @Html.ActionLink(" ", "Delete", new { id = item.product_review_id }, new { @class = "fas fa-trash-alt btn btn-danger me-1" })
             </td>
         </tr>
     }
@@ -53,5 +53,5 @@
 
 
 <div>
-    @Html.ActionLink("Trở về danh sách", "Index")
+    @Html.ActionLink("Trở về danh sách", "Index",new {@class ="btn btn-primary"})
 </div>

@@ -102,40 +102,57 @@
     </div>
     <div class="row">
         <div class="col-xl-3 col-lg-3">
-             <div class="card l-bg-orange-dark">
-                 <div class="card-statistic-3 p-4">
-                     <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
-                     <div class="mb-4">
-                         <h5 class="card-title mb-0">Doanh thu tháng @ViewBag.current_month</h5>
-                     </div>
-                     <div class="row align-items-center mb-2 d-flex">
-                         <div class="col-8">
-                             <h2 class="d-flex align-items-center mb-0">
-                                 @string.Format("{0:0,0.000}", @ViewBag.MonthlyRevenue) đ
-                             </h2>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-        </div>
-            <div class="col-xl-3 col-lg-3">
-                <div class="card l-bg-orange-dark">
-                    <div class="card-statistic-3 p-4">
-                        <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
-                        <div class="mb-4">
-                            <h5 class="card-title mb-0">Doanh thu năm @ViewBag.current_year</h5>
+            <div class="card l-bg-orange-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Doanh thu tháng @ViewBag.before_month</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                @string.Format("{0:0,0.000}", @ViewBag.MonthlyBefore) đ
+                            </h2>
                         </div>
-                        <div class="row align-items-center mb-2 d-flex">
-                            <div class="col-8">
-                                <h2 class="d-flex align-items-center mb-0">
-                                    @string.Format("{0:0,0.000}", @ViewBag.YearlyRevenue) đ
-                                </h2>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-xl-3 col-lg-3">
+            <div class="card l-bg-orange-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Doanh thu tháng @ViewBag.current_month</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                @string.Format("{0:0,0.000}", @ViewBag.MonthlyRevenue) đ
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-3">
+            <div class="card l-bg-orange-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Doanh thu năm @ViewBag.current_year</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                @string.Format("{0:0,0.000}", @ViewBag.YearlyRevenue) đ
+                            </h2>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

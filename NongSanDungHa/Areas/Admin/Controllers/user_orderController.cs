@@ -1,10 +1,12 @@
 ﻿using NongSanDungHa.Models.ADO;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace NongSanDungHa.Areas.Admin.Controllers
 {
@@ -18,12 +20,16 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             public string name { get; set; }
         }
         // GET: Admin/product
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ListUser_Order proRe = new ListUser_Order();
             ViewBag.TotalUserOrder = proRe.getData().Count();
             List<user_order> list = proRe.getData().ToList();
-            return View(list);
+            //Paged List
+            int pageSize = 8;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var lst = new PagedList<user_order>(list, pageNumber, pageSize);
+            return View(lst);
         }
         public ActionResult CreateNew()
         {

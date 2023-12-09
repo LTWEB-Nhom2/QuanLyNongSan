@@ -1,5 +1,6 @@
-﻿@model IEnumerable<NongSanDungHa.Models.ADO.user_order>
-
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList<NongSanDungHa.Models.ADO.user_order>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
@@ -10,11 +11,11 @@
 <div class="d-flex w-100 justify-content-between mb-3">
     <p>
         <a class="btn btn-success" href="@Url.Action("CreateNew")"><i class="fas fa-plus"></i></a>
-       
+
     </p>
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/Admin/user_order/SearchResult" method="get">
         <div class="input-group">
-            <input type="search" class="form-control bg-light border-0 small" placeholder="Search by user id"
+            <input type="search" class="form-control bg-light border-0 small" placeholder="Nhập vào mã đơn hàng"
                    aria-label="Search" aria-describedby="basic-addon2" name="searchKey">
             <div class="input-group-append">
                 <button class="btn btn-primary" style="background-color: #52a851;" type="submit" name="submit">
@@ -34,33 +35,33 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.user_order_id)
+            @Html.DisplayName("ID Đơn hàng")
         </th>
 
 
         <th>
-            @Html.DisplayNameFor(model => model.user_order_buyer_name)
+            @Html.DisplayName("Họ Tên người nhận")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_order_address)
+            @Html.DisplayName("Địa chỉ nhận hàng")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_order_email)
+            @Html.DisplayName("Email")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.user_order_phonenumber)
+            @Html.DisplayName("SĐT")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.order_time)
+            @Html.DisplayName("Thời gian đặt hàng")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.is_processed)
+            @Html.DisplayName("Tình trạng đơn hàng")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.is_delivered)
+            @Html.DisplayName("Trình trạng vận chuyển")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.order_total_value)
+            @Html.DisplayName("Tổng Tiền")
         </th>
         <th></th>
     </tr>
@@ -111,3 +112,8 @@
     }
 
 </table>
+<nav aria-label="Page navigation example" style="display: flex;justify-content:center;align-items:center">
+    <ul class="pagination ">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item" } })
+    </ul>
+</nav>

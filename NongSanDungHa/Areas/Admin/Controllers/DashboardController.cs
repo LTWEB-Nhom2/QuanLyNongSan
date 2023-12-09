@@ -32,6 +32,12 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             decimal MonthlyRevenue = order.GetMonthlyRevenue();
             ViewBag.MonthlyRevenue = MonthlyRevenue;
 
+          
+            int before_month = now.Month - 1;
+            ViewBag.before_month = before_month;
+            decimal MonthlyBefore = order.GetMonthlyBefore();
+            ViewBag.MonthlyBefore = MonthlyBefore;
+
             int current_year = now.Year;
             ViewBag.current_year = current_year;
             decimal YearlyRevenue = order.GetYearlyRevenue();

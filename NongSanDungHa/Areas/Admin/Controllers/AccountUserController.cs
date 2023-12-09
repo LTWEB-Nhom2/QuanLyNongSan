@@ -27,7 +27,7 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         }
         public ActionResult CreateNew()
         {
-
+           
             return View();
         }
         [HttpPost]
@@ -35,14 +35,21 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         {
             ListUserAccount list = new ListUserAccount();
             var res = list.CreateUserAccount(user);
-            if (res == 0)
+         
+            if (res == 1)
             {
+                ViewBag.KT = 1;
                 ViewBag.ErrorMessage = "Tài khoản đã tồn tại";
+            }
+            else
+            {
+                ViewBag.KT = 0;
+                ViewBag.ErrorMessage = "Thêm thành công";
             }
            
                 
 
-            return RedirectToAction("Index");
+            return View();
         }
         public ActionResult Detail(int id)
         {
@@ -67,9 +74,26 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             ListUserAccount list = new ListUserAccount();
+            user_account user = list.Details(id).SingleOrDefault();
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult Delete(user_account user)
+        {
+            ListUserAccount list = new ListUserAccount();
 
-            list.delete(id);
-            return RedirectToAction("Index");
+            var rs = list.delete(user.user_account_id);
+            if (rs == 1)
+            {
+                return RedirectToAction("Index");
+            }else
+            {
+                user_account u = list.Details(user.user_account_id).SingleOrDefault();
+                ViewBag.KT = 0;
+                ViewBag.Message = "Xóa thất bại do dữ liệu đang được sử dụng";
+                return View(u);
+            }    
+            
         }
         //Ajax
         [HttpGet]
@@ -105,7 +129,7 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             ListUserAccount user = new ListUserAccount();
 
             var rs = user.delete(id);
-            if (rs > 0)
+            if (rs == 1)
             {
                 return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
             }

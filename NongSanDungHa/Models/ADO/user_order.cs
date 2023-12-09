@@ -264,6 +264,28 @@ namespace NongSanDungHa.Models.ADO
             return list;
 
         }
+        public decimal GetMonthlyBefore()
+        {
+            SqlConnection con = db.GetConnection();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("GetCurrentMonthBefore", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                decimal monthlyBefore = (decimal)cmd.ExecuteScalar();
+                monthlyBefore = Math.Round(monthlyBefore, 0);
+                return monthlyBefore;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
         public decimal GetMonthlyRevenue()
         {
             SqlConnection con = db.GetConnection();

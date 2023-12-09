@@ -79,7 +79,7 @@ namespace NongSanDungHa.Models.ADO
                 cmd1.CommandType = CommandType.Text;
                 kt1 = cmd1.ExecuteNonQuery();
                 con.Close();
-                return kt1;
+                return 1;
             }
             else
             {
