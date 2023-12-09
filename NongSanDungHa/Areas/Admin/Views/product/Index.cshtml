@@ -8,37 +8,40 @@
 @using PagedList;
 @using PagedList.Mvc;
 <h2>Sản Phẩm</h2>
+
 <div class="d-flex w-100 justify-content-between mb-3">
     <a class="btn btn-success" href="@Url.Action("CreateNew")"><i class="fas fa-plus"></i></a>
+    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/Admin/product/SearchResult" method="get">
+        <div class="input-group">
+            <input type="search" class="form-control bg-light border-0 small" placeholder="Nhập id sản phẩm"
+                   aria-label="Search" aria-describedby="basic-addon2" name="searchKey">
+            <div class="input-group-append">
+                <button class="btn btn-primary" style="background-color: #52a851;" type="submit" name="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <p>
+
+        Tổng số sản phẩm: @ViewBag.TotalProduct
+    </p>
 </div>
 <div class="alert alert-danger" id="alert_delete_failed" style="display:none" role="alert">
     Xóa thất bại do dữ liệu có thể đang được sử dụng
 </div>
 
-<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/Admin/product/SearchResult" method="get">
-    <div class="input-group">
-        <input type="search" class="form-control bg-light border-0 small" placeholder="Search by id"
-               aria-label="Search" aria-describedby="basic-addon2" name="searchKey">
-        <div class="input-group-append">
-            <button class="btn btn-primary" style="background-color: #52a851;" type="submit" name="submit">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
-        </div>
-    </div>
-</form>
 
 
-<p>
 
-    Tổng số sản phẩm: @ViewBag.TotalProduct
-</p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayName("STT")
         </th>
         <th>
-            @Html.DisplayName("ID Loại Sản Phẩm")
+            @Html.DisplayName("Loại Sản Phẩm")
         </th>
         <th>
             @Html.DisplayName("Tên Sản Phẩm")
@@ -55,12 +58,13 @@
 
     @foreach (var item in Model)
     {
+        
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.product_id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.product_category_id)
+                @Html.DisplayFor(modelItem => item.product_category_name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.product_name)

@@ -17,17 +17,21 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult Index(int ?page)
         {
             ListProduct pro = new ListProduct();
+            ListProductCategory proCategory = new ListProductCategory();
             ViewBag.TotalProduct = pro.getData().Count();
             List<product> list = pro.getData().ToList();
             //Paged List
             int pageSize = 8;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
             var lst = new PagedList<product>(list,pageNumber,pageSize);
+            ViewBag.NameCategory = proCategory.getData().ToList();
             return View(lst);
         }
         public ActionResult CreateNew()
         {
-
+            ListProductCategory category = new ListProductCategory();
+            SelectList cateList = new SelectList(category.getData().ToList(), "product_category_id", "product_category_name");
+            ViewBag.CategoryList = cateList;
             return View();
         }
         [HttpPost]
@@ -35,6 +39,7 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         {
             ListProduct list = new  ListProduct();
             pro.product_description = System.Net.WebUtility.HtmlDecode(pro.product_description);
+           
             list.insert(pro);
 
             return RedirectToAction("Index");
@@ -48,8 +53,10 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult Edit(int id, int category_id)
         {
            ListProduct list = new ListProduct();
+            ListProductCategory category = new ListProductCategory();
             product item = list.details(id,category_id).FirstOrDefault();
-
+            SelectList cateList = new SelectList(category.getData().ToList(), "product_category_id", "product_category_name");
+            ViewBag.CategoryList = cateList;
             return View(item);
         }
         [HttpPost]

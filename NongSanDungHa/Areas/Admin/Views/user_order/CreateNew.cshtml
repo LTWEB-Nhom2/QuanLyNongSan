@@ -15,26 +15,22 @@
     <h4>Đơn Hàng</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.user_order_id, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.user_order_id, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.user_order_id, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.user_account_id, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.user_account_id, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.user_account_id, "", new { @class = "text-danger" })
-        </div>
-    </div>
+
+
+  
 
     <div class="form-group">
         @Html.LabelFor(model => model.user_order_buyer_name, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.user_order_buyer_name, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.user_order_buyer_name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.user_order_email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.user_order_email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.user_order_email, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
@@ -51,7 +47,14 @@
             @Html.ValidationMessageFor(model => model.user_order_phonenumber, "", new { @class = "text-danger" })
         </div>
     </div>
-  
+    <div class="form-group">
+        <label class="control-label col-md-2">Hình Thức Thanh toán</label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.payments, (SelectList)ViewBag.PaymentList, new { @class = "form-control" })
+        </div>
+       
+    </div>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-success" />

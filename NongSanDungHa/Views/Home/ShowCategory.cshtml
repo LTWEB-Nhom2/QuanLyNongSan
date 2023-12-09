@@ -12,16 +12,16 @@
         border-color: #52a851;
     }
 </style>
-@{ 
+@{
     var category = ViewBag.NameCategory as product_category;
 }
 <div class="container mt-4">
     <div class="row mb-4">
         <div class="col-md-12">
             @{
-                
-                    <h3 style="color: #939393; font-size: 20px; font-weight: bold">@Html.ActionLink("Trang Chủ", "Index", "", new { style = "color: #939393" }) / @category.product_category_name</h3>
-                
+
+                <h3 style="color: #939393; font-size: 20px; font-weight: bold">@Html.ActionLink("Trang Chủ", "Index", "", new { style = "color: #939393" }) / @category.product_category_name</h3>
+
             }
 
         </div>
@@ -38,20 +38,20 @@
                 let form = document.forms['filter_'];
                 let menu = form.filter;
                 let options = form.filter.options;
-                
+
                 menu.onchange = function () {
                     let index = this.selectedIndex;
-                    
-                    
+
+
                     form.submit();
                 }
-                
-                //function myFunction() {
-                //    document.getElementById("filter_").submit();
-                    
-                    
-                    
-                //}
+
+                            //function myFunction() {
+                            //    document.getElementById("filter_").submit();
+
+
+
+                            //}
 
             </script>
         </div>
@@ -82,8 +82,86 @@
     </div>
     <nav aria-label="Page navigation example" style="display: flex;justify-content:center;align-items:center">
         <ul class="pagination ">
-            @Html.PagedListPager(Model, page => Url.Action("ShowCategory", new { page = page }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item" } } )
+            @Html.PagedListPager(Model, page => Url.Action("ShowCategory", new { page = page }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item" } })
         </ul>
     </nav>
-   
+
 </div>
+@{
+    
+    if (category.product_category_id == 5)
+    {
+        <div class="container" style="margin-top: 25px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title" style="text-align:justify;color:forestgreen">Địa chỉ mua Quà biếu, Quà tết ý nghĩa 2021-2022 | Dễ Mua, Dễ Biếu tại Sài Gòn</h3>
+                            <p class="card-text" style="text-align:justify">
+                                Mỗi khi dịp lễ, dịp Tết nguyên đán đến gần, chúng ta bắt đầu tìm những món quà biếu, quà tết ý nghĩa và đầy thiết thực để dành tặng bố mẹ, người thân trong gia đình,
+                                những món quà tết tặng sếp độc đáo và tri ân khách hàng. Tuy nhiên câu hỏi được đặt ra là mua quà tết thì nên mua gì và mua ở đâu?
+                            </p>
+                            <p class="card-text" style="font-style:italic;font-weight:bold;color:red">
+                                Nông Sản Dũng Hà chuyên cung cấp các loại quà biếu, quà tết phù hợp với nhu cầu sử dụng của mọi đối tượng.
+                            </p>
+                            <h4 class="card-title" style="text-align:justify;color:forestgreen">Mua Quà Biếu, Quà Tết Cho Sếp</h4>
+                            <p class="card-text">
+                                Khi lựa chọn các món quà biếu tết cho sếp vào các dịp lễ tết, mọi người hay có xu hướng tìm các sản phẩm độc đáo, mới lạ để tạo ấn tượng với sếp. Tuy nhiên, xu hướng quà biếu sếp hiện nay thiết thực hơn, đặc biệt là gắn liền với cuộc sống và sức khỏe của người sử dụng. Dưới đây là một số gợi ý của chúng tôi về quà tết biếu sếp để bạn lựa chọn:
+                            </p>
+                            <div class="row justify-content-center">
+                                <div class="col-md-4 text-center">
+                                    <img src="https://admin.nongsandungha.com/uploads/uploads/2019/11/gio-qua-phuc-loc.jpg" alt="Giỏ Quà Phúc Lộc" class="img-fluid mx-auto d-block">
+                                    <p style="color:forestgreen">Giỏ Quà Phúc Lộc</p>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <img src="https://admin.nongsandungha.com/uploads/uploads/2019/11/tet-nhu-y.jpg" alt="Bộ Quà Tết Như Ý" class="img-fluid mx-auto d-block">
+                                    <p style="color:forestgreen">Bộ Quà Tết Như Ý</p>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <img src="https://admin.nongsandungha.com/uploads/uploads/2019/11/gio-qua-vien-man.jpg" alt="Giỏ Quà Viên Mãn" class="img-fluid mx-auto d-block">
+                                    <p style="color:forestgreen">Giỏ Quà Viên Mãn</p>
+                                </div>
+                            </div>
+                            <h4 class="card-title" style="text-align:justify;color:forestgreen">Mua Quà Biếu, Quà Tết Cho Gia Đình</h4>
+                            <p class="card-text" style="text-align:justify">
+                                Tết đến xuân về là dịp mọi người thể hiện lòng biết ơn, sự đền ơn đáp nghĩa với bố mẹ và tình yêu thường với gia đình mình bằng các món quà tết vừa đơn giản vừa ý nghĩa. Dưới đây là một số món quà tết ý nghĩa để bạn lựa chọn:
+                            </p>
+                            <div class="row justify-content-center">
+                                <div class="col-md-4 text-center">
+                                    <img src="https://admin.nongsandungha.com/uploads/uploads/2019/11/gio-qua-truong-tho.jpg" alt="Giỏ Quà Trường Thọ" class="img-fluid mx-auto d-block">
+                                    <p style=";color:forestgreen">Giỏ Quà Trường Thọ</p>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <img src="https://admin.nongsandungha.com/uploads/uploads/2019/11/tet-doan-vien.jpg" alt="Bộ Quà Tết Đoàn Viên" class="img-fluid mx-auto d-block">
+                                    <p style="color:forestgreen">Bộ Quà Tết Đoàn Viên</p>
+                                </div>
+
+                            </div>
+
+                            <h4 class="card-title" style="text-align:justify;color:forestgreen">Giá quà biếu, quà tết 2023-2024 tại Dũng Hà</h4>
+                            <p class="card-text" style="text-align:justify">
+                                Dũng Hà có 3 mức giá cho các sản phẩm quà biếu, quà tết như sau:
+                            </p>
+                            <ul>
+                                <li>Quà biếu tết cao cấp: Giá > 2.000.000đ</li>
+                                <li>Quà biếu tết trung bình: Giá > 800.000đ</li>
+                                <li>Quà biếu tết bình dân: Giá khoảng 500.000 - 800.000đ</li>
+                            </ul>
+
+                            <h4 class="card-title" style="text-align:justify;color:forestgreen">Các Mẫu mã gói quà biếu, quà tết theo yêu cầu</h4>
+                            <p class="card-text" style="text-align:justify">
+                                Chúng tôi có nhiều cách đóng gói, gói quà tết để khách hàng lựa chọn phù hợp
+                            </p>
+                            <ul>
+                                <li><strong>Giỏ:</strong> Giỏ nhựa, Giỏ đan</li>
+                                <li><strong>Hộp:</strong> Hộp carton, Hộp giấy</li>
+                                <li><strong>Túi:</strong> Túi in nilong, in giấy</li>
+                                <li><strong>Thiệp:</strong> nhiều mẫu mã thiệp độc đáo, ý nghĩa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

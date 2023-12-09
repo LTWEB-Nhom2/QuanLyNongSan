@@ -11,10 +11,11 @@
 
 <div class="d-flex w-100 justify-content-between mb-3">
     <a class="btn btn-success" href="@Url.Action("CreateNew")"><i class="fas fa-plus"></i></a>
+    <p>
+        Tổng số khuyến mãi: @ViewBag.TotalDiscount
+    </p>
 </div>
-<p>
-    Tổng số khuyến mãi: @ViewBag.TotalDiscount
-</p>
+
 <table class="table">
     <tr>
         <th>

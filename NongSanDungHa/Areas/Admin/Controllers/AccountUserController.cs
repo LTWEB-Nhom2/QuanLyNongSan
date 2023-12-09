@@ -34,7 +34,13 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult CreateNew( user_account user)
         {
             ListUserAccount list = new ListUserAccount();
-            list.CreateUserAccount(user);
+            var res = list.CreateUserAccount(user);
+            if (res == 0)
+            {
+                ViewBag.ErrorMessage = "Tài khoản đã tồn tại";
+            }
+           
+                
 
             return RedirectToAction("Index");
         }

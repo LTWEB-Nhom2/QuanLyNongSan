@@ -28,12 +28,16 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         }
         public ActionResult CreateNew()
         {
-
+            ListProduct pro = new ListProduct();
+            SelectList cateList = new SelectList(pro.getData().ToList(), "product_id", "product_name");
+            ViewBag.ProductList = cateList;
             return View();
         }
         [HttpPost]
         public ActionResult CreateNew(user_order_product proRe)
         {
+            ListProduct listP = new ListProduct();
+            proRe.product_name = listP.getData().SingleOrDefault(x=> x.product_id == proRe.product_id).product_name;
             ListUser_Order_Product list = new ListUser_Order_Product();
             list.insert(proRe);
 

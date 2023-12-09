@@ -18,10 +18,12 @@ namespace NongSanDungHa.Models.ADO
         [Range(1, int.MaxValue, ErrorMessage = "Giá trị không hợp lệ.")]
         [Display(Name = "ID người dùng")]
         public int? user_account_id { get; set; }
+        public string user_account_name { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         [Range(1, int.MaxValue, ErrorMessage = "Giá trị không hợp lệ.")]
         [Display(Name = "ID sản phẩm")]
         public int? product_id { get; set; }
+        public string product_name { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         [StringLength(255)]
         [Display(Name = "Nội dung")]
@@ -43,9 +45,9 @@ namespace NongSanDungHa.Models.ADO
         {
             string sql;
 
-            sql = "Select * from product_review";
+            sql = "Select * from product_review p inner join user_account u on p.user_account_id = u.user_account_id inner join product pro on p.product_id = pro.product_id";
 
-
+         
             List<product_review> list = new List<product_review>();
             SqlConnection con = db.GetConnection();
             con.Open();
@@ -57,6 +59,8 @@ namespace NongSanDungHa.Models.ADO
                 product_review item = new product_review();
                 item.product_review_id = int.Parse(dr["product_review_id"].ToString());
                 item.user_account_id = int.Parse(dr["user_account_id"].ToString());
+                item.product_name = dr["product_name"].ToString();
+                item.user_account_name = dr["user_username"].ToString();
                 item.product_id = int.Parse(dr["product_id"].ToString());
                 item.product_review_content = dr["product_review_content"].ToString();
                 item.review_owner = dr["review_owner"].ToString();
@@ -137,10 +141,10 @@ namespace NongSanDungHa.Models.ADO
             cmd.Dispose();
             con.Close();
         }
-        public List<product_review> getProductReview(int product_review_id)
+        public List<product_review> getProductReview(int user_account_id)
         {
             string sql;
-            sql = "Select * from product_review where product_review_id = " + product_review_id;
+            sql = "Select * from product_review pr inner join product p on p.product_id = pr.product_id inner join user_account u on pr.user_account_id = u.user_account_id where pr.user_account_id = " + user_account_id;
             List<product_review> list = new List<product_review>();
             SqlConnection con = db.GetConnection();
             con.Open();
@@ -152,6 +156,8 @@ namespace NongSanDungHa.Models.ADO
                 product_review item = new product_review();
                 item.product_review_id = int.Parse(dr["product_review_id"].ToString());
                 item.user_account_id = int.Parse(dr["user_account_id"].ToString());
+                item.user_account_name = dr["user_username"].ToString();
+                item.product_name = dr["product_name"].ToString();
                 item.product_id = int.Parse(dr["product_id"].ToString());
                 item.product_review_content = dr["product_review_content"].ToString();
                 item.review_owner = dr["review_owner"].ToString();

@@ -29,7 +29,10 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         }
         public ActionResult CreateNew()
         {
-
+            ListProduct pro = new ListProduct();
+        
+            SelectList cateList = new SelectList(pro.getData().ToList(), "product_id", "product_name");
+            ViewBag.ProductList = cateList;
             return View();
         }
         [HttpPost]
@@ -44,13 +47,17 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         {
             ListProductImage list = new ListProductImage();
              product_image proImg = list.Details(id).FirstOrDefault();
+           
             return View(proImg);
         }
         public ActionResult Edit(int id)
         {
             ListProductImage list = new ListProductImage();
              product_image item = list.Details(id).FirstOrDefault();
+            ListProduct pro = new ListProduct();
 
+            SelectList cateList = new SelectList(pro.getData().ToList(), "product_id", "product_name");
+            ViewBag.ProductList = cateList;
             return View(item);
         }
         [HttpPost]

@@ -21,6 +21,8 @@ namespace NongSanDungHa.Models.ADO
         [Range(0, int.MaxValue, ErrorMessage = "Số không được âm")]
         [Display(Name = "Mã danh mục")]
         public int? product_category_id { get; set; }
+
+        public string product_category_name { get; set; }
         [StringLength(255, ErrorMessage = "Vui lòng nhập tối đa 255 ký tự")]
         [Display(Name = "Tên Sản Phẩm")]
 
@@ -54,7 +56,7 @@ namespace NongSanDungHa.Models.ADO
         {
             string sql;
 
-            sql = "Select * from product";
+            sql = "Select * from product p inner join product_category cate on p.product_category_id = cate.product_category_id ";
 
 
             List<product> list = new List<product>();
@@ -73,6 +75,7 @@ namespace NongSanDungHa.Models.ADO
                 item.product_thumbnail_image = dr["product_thumbnail_image"].ToString();
                 item.product_name = dr["product_name"].ToString();
                 item.product_category_id = int.Parse(dr["product_category_id"].ToString());
+                item.product_category_name = dr["product_category_name"].ToString();
                 list.Add(item);
             }
 

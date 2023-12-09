@@ -42,14 +42,7 @@ namespace NongSanDungHa.Controllers
 
             return View();
         }
-        public ActionResult QuaBieuQuaTet()
-        {
-            List<product> products = db.products.ToList();
-            List<product_category> Categories = db.product_categories.ToList();
-            ViewBag.products = products;
-            ViewBag.Category = Categories;
-            return View();
-        }    
+    
         public ActionResult Navigator()
         {
            
@@ -96,6 +89,7 @@ namespace NongSanDungHa.Controllers
             }
             product_category Category = db.product_categories.SingleOrDefault(x => x.product_category_id == id);
             PagedList<product> lst = new PagedList<product>(ListCategory, pageNumber, pageSize);
+            
             ViewBag.NameCategory = Category;
             ViewBag.pageSize = pageSize;
             ViewBag.CountProducts = db.products.Where(x => x.product_category_id == id).Count();

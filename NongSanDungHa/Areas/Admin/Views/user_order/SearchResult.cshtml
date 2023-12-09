@@ -75,7 +75,10 @@
                 @Html.DisplayFor(modelItem => item.is_delivered)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.order_total_value)
+
+                @{ string price = string.Format("{0:0,0.000} đ", item.order_total_value);
+                }
+                @price
             </td>
 
             <td>

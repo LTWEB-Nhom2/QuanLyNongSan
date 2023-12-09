@@ -119,7 +119,7 @@ namespace NongSanDungHa.Models.ADO
         {
             SqlConnection con = db.GetConnection();
             con.Open();
-            string update = "Update user_order_product set product_name=@product_name,order_product_amount=@order_product_amount  where user_order_id = @user_order_id";
+            string update = "Update user_order_product set order_product_amount=@order_product_amount  where user_order_id = @user_order_id and product_id = @product_id";
             SqlCommand cmd = new SqlCommand(update, con);
             cmd.Parameters.Clear();
             cmd.Parameters.Add("@user_order_id", item.user_order_id);

@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.user_account_id)
+            @Html.DisplayName("Tên người dùng")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.product_id)
+            @Html.DisplayName("Sản Phẩm")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.product_review_content)
@@ -30,10 +30,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.user_account_id)
+                @Html.DisplayFor(modelItem => item.user_account_name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.product_id)
+                @Html.DisplayFor(modelItem => item.product_name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.product_review_content)

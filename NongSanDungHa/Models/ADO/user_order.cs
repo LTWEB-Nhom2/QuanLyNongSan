@@ -29,6 +29,7 @@ namespace NongSanDungHa.Models.ADO
         [Required(ErrorMessage = "Không được để trống")]
         [Column(TypeName = "date")]
         [Display(Name = "Thời gian đặt hàng")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime? order_time { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
@@ -149,7 +150,7 @@ namespace NongSanDungHa.Models.ADO
         {
             SqlConnection con = db.GetConnection();
             con.Open();
-            string update = "Update user_order set user_account_id = @user_account_id,order_time =@order_time, user_order_buyer_name = @user_order_buyer_name, user_order_address =@user_order_address,user_order_email=@user_order_email,user_order_phonenumber=@user_order_phonenumber,is_processed=@is_processed,is_delivered=@is_delivered, order_total_value=@order_total_value, payments=@payments where user_order_id = @user_order_id";
+            string update = "Update user_order set order_time =@order_time, user_order_buyer_name = @user_order_buyer_name, user_order_address =@user_order_address,user_order_email=@user_order_email,user_order_phonenumber=@user_order_phonenumber,is_processed=@is_processed,is_delivered=@is_delivered, order_total_value=@order_total_value, payments=@payments where user_order_id = @user_order_id";
             SqlCommand cmd = new SqlCommand(update, con);
             cmd.Parameters.Clear();
             cmd.Parameters.Add("@user_order_id", item.user_order_id);
@@ -192,7 +193,7 @@ namespace NongSanDungHa.Models.ADO
         {
             SqlConnection con = db.GetConnection();
             con.Open();
-            string sql = "Insert into user_order values(@user_account_id,@order_time, @user_order_buyer_name, @user_order_address,@user_order_email,@user_order_phonenumber,@is_processed,@is_delivered, @order_total_value)";
+            string sql = "Insert into user_order values(@user_account_id,@order_time, @user_order_buyer_name, @user_order_address,@user_order_email,@user_order_phonenumber,@is_processed,@is_delivered,@payments,@order_total_value)";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.Parameters.Clear();
             cmd.Parameters.Add("@user_account_id", item.user_account_id);
@@ -201,6 +202,7 @@ namespace NongSanDungHa.Models.ADO
             cmd.Parameters.Add("@user_order_address", item.user_order_address);
             cmd.Parameters.Add("@user_order_email", item.user_order_email);
             cmd.Parameters.Add("@user_order_phonenumber", item.user_order_phonenumber);
+            cmd.Parameters.Add("@payments", item.payments);
             cmd.Parameters.Add("@is_processed", item.is_processed);
             cmd.Parameters.Add("@is_delivered", item.is_delivered);
             cmd.Parameters.Add("@order_total_value", item.order_total_value);
