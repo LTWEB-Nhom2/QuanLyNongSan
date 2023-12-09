@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "TuyenDung";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Tuyển dụng</title>
+    <!-- Link đến Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Thêm CSS tùy chỉnh nếu cần */
+        .job-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .job-image {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 style="text-align:center">Danh sách Tuyển dụng</h2>
+
+        <!-- Danh sách tuyển dụng -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="job-item">
+                    <img src="https://admin.nongsandungha.com/wp-content/uploads/2020/07/nong-san-dung-ha-200x128.jpg" alt="Job 1" style="height:150px;width:300px">
+                    <div>
+                        <h4><a href="~/TuyenDung/Marketing">Tuyển dụng Marketing</a></h4>
+                        <p style="text-align:justify">
+                            MÔ TẢ CÔNG VIỆC 1. Nghiên cứu chương trình quảng cáo và các sản phẩm chiến lược
+                            2. Quản lý quảng cáo trên các kênh fb, gg, sàn 3. Kết hợp với các ...
+                        </p>
+                    </div>
+                </div>
+                <hr />
+                <div class="job-item">
+                    <img src="https://admin.nongsandungha.com/wp-content/uploads/2020/07/nong-san-dung-ha-200x128.jpg" alt="Job 2" style="height:150px;width:235px">
+                    <div>
+                        <h4><a href="~/TuyenDung/ChuyenVien">Nhân viên/Chuyên viên SEO - Marketing</a></h4>
+                        <p>- Tối ưu chuẩn SEO,ONPAGE</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <img src="https://admin.nongsandungha.com/wp-content/uploads/2022/07/18df98c649718a2fd360.jpg" alt="Cửa hàng nông sản" class="img-fluid rounded">
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Link đến Bootstrap JS và jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+

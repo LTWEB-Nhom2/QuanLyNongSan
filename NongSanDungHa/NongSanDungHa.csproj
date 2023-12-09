@@ -154,6 +154,7 @@
     <Compile Include="common\MailHelper.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TuyenDungController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1290,6 +1291,9 @@
     <Content Include="Views\Cart\DetailCartItems.cshtml" />
     <Content Include="Views\Home\GioiThieu.cshtml" />
     <Content Include="Views\Cart\Cart_Items.cshtml" />
+    <Content Include="Views\TuyenDung\TuyenDung.cshtml" />
+    <Content Include="Views\TuyenDung\Marketing.cshtml" />
+    <Content Include="Views\TuyenDung\ChuyenVien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "Marketing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuyển dụng Marketing</title>
+    <!-- Link đến Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Thêm CSS tùy chỉnh nếu cần */
+        .job-details {
+            margin-top: 20px;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .toc-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .toc-list {
+            display: none;
+        }
+
+            .toc-list a {
+                display: block;
+                margin-bottom: 5px;
+            }
+    </style>
+</head>
+<body>
+    
+    <div class="container mt-5">
+        <h2 style="color:forestgreen">Tuyển dụng Marketing</h2>
+        <hr />
+        <button class="toc-button" onclick="toggleToc()">Mục lục</button>
+
+        <div class="toc-list" id="tocList">
+            <a href="#info">THÔNG TIN TUYỂN DỤNG</a>
+            <a href="#benefits">QUYỀN LỢI ĐƯỢC HƯỞNG</a>
+            <a href="#requirements">YÊU CẦU KHÁC</a>
+            <a href="#contact">THÔNG TIN LIÊN HỆ</a>
+        </div>
+        <div class="row">
+            <div class="col-lg-9">
+                <div id="info" class="job-details">
+                    <h2>THÔNG TIN TUYỂN DỤNG</h2>
+                    <p style="text-align:justify">
+                        Mức lương: 8 – 15 triệu Kinh nghiệm: trên
+                        1 năm kinh nghiệm Yêu cầu bằng cấp: tốt nghiệp trung học phổ
+                        thông trở lên Số lượng cần tuyển: 2 Ngành nghề: Báo chí-Truyền hình,
+                        Marketing-PR Địa điểm làm việc: Hà Nội Chức vụ: Chuyên viên – Nhân viên Hình thức làm việc:
+                        cố định Thời gian thử việc: 1 tháng Yêu cầu giới tính:   nam/nữ Yêu cầu độ tuổi: 22 – 35 tuổi MÔ TẢ CÔNG VIỆC 1
+                        . Nghiên cứu chương trình quảng cáo và các sản phẩm chiến lược 2. Quản lý quảng cáo trên các kênh fb, gg,
+                        sàn 3. Kết hợp với các phòng
+                        để tạo nội dung và giá bán khi quảng cáo
+                        4. Cập nhật giá, thông tin sản phẩm trên các kênh
+                        5. Báo cáo chi phí & đánh giá lại tình hình bán sản phẩm
+                    </p>
+                </div>
+                <div id="benefits" class="job-details">
+                    <h2>QUYỀN LỢI ĐƯỢC HƯỞNG</h2>
+                    <p style="text-align:justify">
+                        - Chế độ: Lương cứng 8.000.000đ – 15.000.000đ + Thưởng theo Traffic
+                        - Tham gia đầy đủ BHYT, BHXH, BHTN…. theo quy định của Nhà Nước.
+                        - Thưởng các ngày lễ tết và hàng năm được nghỉ mát theo quy định của công ty.
+                        - Thưởng bồi dưỡng theo năng lực và công việc -
+                        Được tham gia các hoạt động đào tạo để nâng cao trình độ chuyên môn.
+                    </p>
+                </div>
+                <div id="requirements" class="job-details">
+                    <h2>Yêu cầu khác</h2>
+                    <p style="text-align:justify">
+                        Khối ngành Kinh tế / Marketing / Quản trị kinh doanh / Thương mại điện tử các trường đại học khu vực Hà Nội
+                        – Có khả năng thực tập tại công ty full time hoặc part time – Có tính độc lập, tự giác, năng động, linh hoạt và sáng tạo cao
+                        – Yêu thích marketing, thương mại điện tử và có mong muốn được làm việc cho các công ty quốc tế
+                    </p>
+                </div>
+                <div id="contact" class="job-details">
+                    <h2>THÔNG TIN LIÊN HỆ</h2>
+                    <p>
+                        NGƯỜI LIÊN HỆ: Nguyễn Kế Bảo
+                        <br />ĐỊA CHỈ LIÊN HỆ:377/30 Đinh Bộ Lĩnh
+                        <br />
+                        EMAIL LIÊN HỆ: baonguyen301103@gmail.com <br />ĐIỆN THOẠI LIÊN HỆ:190090023
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <p style="background-color:forestgreen;color:white;padding:10px;font-size:15px;font-weight:bold">THAM GIA NHÓM ZALO CẬP NHẬT GIÁ SĨ HẰNG NGÀY</p>
+                <img src="https://admin.nongsandungha.com/wp-content/uploads/2022/07/18df98c649718a2fd360.jpg" alt="Cửa hàng nông sản" class="img-fluid rounded">
+                <br />
+                <br />
+                <p style="background-color:forestgreen;color:white;padding:10px;font-size:15px;font-weight:bold">DŨNG HÀ TRÊN ZALO</p>
+                <p style="text-align:center">Hãy theo dõi Dũng Hà để nhận khuyến mãi hàng tuần</p>
+                <img src="https://admin.nongsandungha.com/wp-content/uploads/2022/07/18df98c649718a2fd360.jpg" alt="Cửa hàng nông sản" class="img-fluid rounded">
+
+            </div>
+        </div>
+    </div>
+    <hr />
+    <!-- Link đến Bootstrap JS và jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function toggleToc() {
+            var tocList = document.getElementById('tocList');
+            tocList.style.display = (tocList.style.display === 'none' || tocList.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+
+</body>
+</html>
+

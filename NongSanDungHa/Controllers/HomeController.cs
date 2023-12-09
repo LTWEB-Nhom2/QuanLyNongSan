@@ -34,6 +34,7 @@ namespace NongSanDungHa.Controllers
         {
             return View();
         }
+       
         public ActionResult Navigator()
         {
            
