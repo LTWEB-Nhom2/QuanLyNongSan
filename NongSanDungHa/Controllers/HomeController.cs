@@ -34,7 +34,14 @@ namespace NongSanDungHa.Controllers
         {
             return View();
         }
-       
+        public ActionResult ThanhToan()
+        {
+            return View();
+        }
+        public ActionResult LienHe()
+        {
+            return View();
+        }
         public ActionResult Navigator()
         {
            
