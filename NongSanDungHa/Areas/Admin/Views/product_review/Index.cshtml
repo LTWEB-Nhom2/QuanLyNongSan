@@ -7,9 +7,9 @@
 }
 
 <h2>Đánh giá người dùng</h2>
-<div class="d-flex w-100 justify-content-between mb-3">
+@*<div class="d-flex w-100 justify-content-between mb-3">
     <a class="btn btn-success" href="@Url.Action("CreateNew")"><i class="fas fa-plus"></i></a>
-</div>
+</div>*@
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/Admin/product_review/SearchResult" method="get">
     <div class="input-group">
         <input type="search" class="form-control bg-light border-0 small" placeholder="Search by id"
@@ -59,7 +59,7 @@
             </td>
             <td>
                 @Html.ActionLink(" ", "Detail", new { id = item.product_review_id }, new { @class = "fas fa-eye btn btn-success me-1" }) 
-                @Html.ActionLink(" ", "Edit", new { id = item.product_review_id }, new { @class = "fas fa-edit btn btn-warning me-1" }) 
+                @*@Html.ActionLink(" ", "Edit", new { id = item.product_review_id }, new { @class = "fas fa-edit btn btn-warning me-1" })*@ 
                 @Html.ActionLink(" ", "Delete", new { id = item.product_review_id }, new { @class = "fas fa-trash-alt btn btn-danger me-1" })
             </td>
         </tr>

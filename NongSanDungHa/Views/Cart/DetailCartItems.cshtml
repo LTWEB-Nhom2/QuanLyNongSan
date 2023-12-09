@@ -42,6 +42,7 @@
                             sum += tong;
                             i++;
                         }
+                        sum += 30;
                     }
 
 
@@ -51,7 +52,8 @@
             </table>
             <div class="d-flex justify-content-between">
                 @Html.ActionLink("Trở về","DetailCart",new {Controller = "Cart",UserID = user.user_account_id},new {@class="btn btn-success"})
-                <p style="text-align: right; font-size: 23px;text-align:end">Tổng Thành Tiền: @string.Format("{0:0,0.000}", @sum) đ</p>
+                <p style="text-align: right; font-size: 23px;text-align:end">Phí vận chuyển: 30.000đ</p>
+                <p style="text-align: right; font-size: 23px;text-align:end; color:red  ">Tổng Thành Tiền: @string.Format("{0:0,0.000}", @sum) đ</p>
             </div>
             
         </div>

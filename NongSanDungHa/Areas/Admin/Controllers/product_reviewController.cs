@@ -27,39 +27,39 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             var lst = new PagedList<product_review>(list, pageNumber, pageSize);
             return View(lst);
         }
-        public ActionResult CreateNew()
-        {
+        //public ActionResult CreateNew()
+        //{
 
-            return View();
-        }
-        [HttpPost]
-        public ActionResult CreateNew( product_review proRe)
-        {
-            ListProduct_review list = new ListProduct_review();
-            list.insert(proRe);
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult CreateNew( product_review proRe)
+        //{
+        //    ListProduct_review list = new ListProduct_review();
+        //    list.insert(proRe);
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
         public ActionResult Detail(int id)
         {
             ListProduct_review list = new ListProduct_review();
              product_review proRe = list.Details(id).FirstOrDefault();
             return View(proRe);
         }
-        public ActionResult Edit(int id)
-        {
-            ListProduct_review list = new ListProduct_review();
-             product_review item = list.Details(id).FirstOrDefault();
+        //public ActionResult Edit(int id)
+        //{
+        //    ListProduct_review list = new ListProduct_review();
+        //     product_review item = list.Details(id).FirstOrDefault();
 
-            return View(item);
-        }
-        [HttpPost]
-        public ActionResult Edit( product_review proRe)
-        {
-            ListProduct_review list = new ListProduct_review();
-            list.update(proRe);
-            return RedirectToAction("Index");
-        }
+        //    return View(item);
+        //}
+        //[HttpPost]
+        //public ActionResult Edit( product_review proRe)
+        //{
+        //    ListProduct_review list = new ListProduct_review();
+        //    list.update(proRe);
+        //    return RedirectToAction("Index");
+        //}
         public ActionResult Delete(int id)
         {
             ListProduct_review list = new ListProduct_review();

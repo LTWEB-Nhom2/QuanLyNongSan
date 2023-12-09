@@ -34,9 +34,10 @@ namespace NongSanDungHa.Models.ADO
         [Display(Name = "Ngày bắt đầu")]
         [Required(ErrorMessage = "Vui lòng nhập ngày bắt đầu")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? discount_event_DateCreated { get; set; }
         [Display(Name = "Mã mặt hàng")]
-        [Required(ErrorMessage = "Vui lòng nhập mã mặt hàng được khuyến mãi")]
+        
         [Range(0, int.MaxValue, ErrorMessage = "Số không được âm")]
         public int? product_category_id { get; set; }
     }
