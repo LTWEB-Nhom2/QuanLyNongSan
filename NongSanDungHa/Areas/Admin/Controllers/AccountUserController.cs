@@ -95,6 +95,13 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             }    
             
         }
+        public ActionResult SearchResult(int searchKey)
+        {
+            ListUserAccount list = new ListUserAccount();
+            List<user_account> lstSearch = list.search(searchKey).ToList();
+            ViewBag.searchKey = searchKey;
+            return View(lstSearch);
+        }
         //Ajax
         [HttpGet]
         public JsonResult GetData()
