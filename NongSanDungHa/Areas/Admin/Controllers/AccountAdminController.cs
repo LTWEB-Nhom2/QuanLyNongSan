@@ -80,12 +80,16 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult Delete(admin_account admin)
         {
             ListAdminAccount list = new ListAdminAccount();
-
-            var rs = list.delete(admin.admin_account_id);
-            if (rs == 1)
+            admin_account sesAd = Session["User"] as admin_account;
+            if (sesAd.admin_username != admin.admin_username)
             {
-                return RedirectToAction("Index");
-            }
+                var rs = list.delete(admin.admin_account_id);
+                if (rs == 1)
+                {
+                    return RedirectToAction("Index");
+                }
+            }    
+           
             admin_account ad = list.Details(admin.admin_account_id).FirstOrDefault();
             ViewBag.KT = 0;
             ViewBag.Message = "Xóa Thất bại";

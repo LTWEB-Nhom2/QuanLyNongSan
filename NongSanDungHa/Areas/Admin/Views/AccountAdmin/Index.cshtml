@@ -6,7 +6,9 @@
 }
 @using PagedList;
 @using PagedList.Mvc;
-
+@{
+    NongSanDungHa.Models.admin_account user = Session["User"] as NongSanDungHa.Models.admin_account;
+}
 <h2>Tài khoản quản trị viên</h2>
 
 
@@ -54,9 +56,12 @@
                 <td>
                     <button type="button" name="View" data-bs-toggle="modal" onclick="return Admin_Details(@item.admin_account_id)" data-bs-target="#ModalView" class="btn btn-success me-1"><i class="fas fa-eye"></i></button>
                     <a class="btn btn-warning me-1" href="/Admin/AccountAdmin/Edit/@item.admin_account_id"><i class="fas fa-edit"></i></a>
-                    
-                    <a class="btn btn-danger" href="/Admin/AccountAdmin/Delete/@item.admin_account_id"><i class="fas fa-trash-alt"></i> </a>
-                  
+                    @if (user.admin_username != item.admin_username)
+                    {
+                        <a class="btn btn-danger" href="/Admin/AccountAdmin/Delete/@item.admin_account_id"><i class="fas fa-trash-alt"></i> </a>
+                    }
+
+
                 </td>
             </tr>
         }
@@ -87,7 +92,7 @@
                     <dd>
                         <input type="text" id="password" class="form-control" />
                     </dd>
-                   
+
                 </dl>
             </div>
             <div class="modal-footer">
