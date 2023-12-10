@@ -16,7 +16,7 @@
         <th>
             @Html.DisplayNameFor(model => model.user_password)
         </th>
-    
+
         <th>
             @Html.DisplayNameFor(model => model.user_gender)
         </th>
@@ -53,7 +53,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.user_password)
             </td>
-        
+
             <td>
                 @Html.DisplayFor(modelItem => item.user_gender)
             </td>
@@ -80,7 +80,7 @@
             </td>
             <td>
                 @Html.ActionLink(" ", "Edit", new { id = item.user_account_id }, new { @class = "fas fa-edit btn btn-warning me-1" })
-                @Html.ActionLink(" ", "Details", new { id = item.user_account_id }, new { @class = "fas fa-eye btn btn-success me-1" })
+                <button type="button" name="View" data-bs-toggle="modal" onclick="return User_Details(@item.user_account_id)" data-bs-target="#ModalView" class="btn btn-success me-1"><i class="fas fa-eye"></i></button>
                 @Html.ActionLink(" ", "Delete", new { id = item.user_account_id }, new { @class = "fas fa-trash-alt btn btn-danger me-1" })
             </td>
         </tr>
@@ -89,4 +89,83 @@
 </table>
 <div>
     @Html.ActionLink("Trở về danh sách", "Index")
+</div>
+<div class="modal fade" id="ModalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông tin chi tiết</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        @Html.DisplayName("Tên tài khoản")
+                    </dt>
+                    <dd>
+                        <input type="hidden" id="user_id" />
+                        <input type="text" id="username" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayName("Mật khẩu")
+                    </dt>
+                    <dd>
+                        <input type="text" id="password" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayName("Giới tính")
+                    </dt>
+                    <dd>
+                        <input type="text" id="firstname" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayName("Email")
+                    </dt>
+                    <dd>
+                        <input type="text" id="lastname" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayName("SĐT")
+                    </dt>
+                    <dd>
+                        <input type="text" id="gender" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayName("Địa chỉ")
+                    </dt>
+                    <dd>
+                        <input type="text" id="address" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayName("Tên")
+                    </dt>
+                    <dd>
+                        <input type="email" id="email" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayName("Họ")
+                    </dt>
+                    <dd>
+                        <input type="number" id="phonenumber" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayName("Hạng")
+                    <dd>
+                        <input type="text" id="tier" class="form-control" />
+                    </dd>
+                    <dt>
+                        @Html.DisplayName("Điểm")
+                    </dt>
+                    <dd>
+                        <input type="number" id="point" class="form-control" />
+                    </dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" name="save" id="btn-savechanges" class="btn btn-success">Lưu</button>
+            </div>
+        </div>
+    </div>
 </div>

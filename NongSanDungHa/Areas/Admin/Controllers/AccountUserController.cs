@@ -95,7 +95,7 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             }    
             
         }
-        public ActionResult SearchResult(int searchKey)
+        public ActionResult SearchResult(string searchKey)
         {
             ListUserAccount list = new ListUserAccount();
             List<user_account> lstSearch = list.search(searchKey).ToList();

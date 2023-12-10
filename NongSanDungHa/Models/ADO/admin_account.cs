@@ -115,11 +115,11 @@ namespace NongSanDungHa.Models.ADO
             return list;
         }
 
-        public List<admin_account> search(int admin_account_id)
+        public List<admin_account> search(string admin_account_name)
         {
             List<admin_account> list = new List<admin_account>();
 
-            string sql = "Select * from admin_account where admin_account_id = '" + admin_account_id + "'";
+            string sql = "Select * from admin_account where admin_username like '%" + admin_account_name + "%'";
             SqlConnection con = db.GetConnection();
             con.Open();
             SqlCommand cmd = new SqlCommand(sql, con);
