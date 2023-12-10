@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NongSanDungHa.Models.ADO.admin_account>
+﻿﻿@model IEnumerable<NongSanDungHa.Models.ADO.admin_account>
 
 @{
     ViewBag.Title = "SearchResult";
@@ -33,9 +33,9 @@
                 @Html.DisplayFor(modelItem => item.admin_password)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.admin_account_id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.admin_account_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.admin_account_id })
+                @Html.ActionLink(" ", "Edit", new { id = item.admin_account_id }, new { @class = "fas fa-edit btn btn-warning me-1" })
+                @Html.ActionLink(" ", "Details", new { id = item.admin_account_id }, new { @class = "fas fa-eye btn btn-success me-1" })
+                @Html.ActionLink(" ", "Delete", new { id = item.admin_account_id }, new { @class = "fas fa-trash-alt btn btn-danger me-1" })
             </td>
         </tr>
     }

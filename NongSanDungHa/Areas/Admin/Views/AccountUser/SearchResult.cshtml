@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NongSanDungHa.Models.ADO.user_account>
+﻿﻿@model IEnumerable<NongSanDungHa.Models.ADO.user_account>
 
 @{
     ViewBag.Title = "SearchResult";
@@ -16,9 +16,7 @@
         <th>
             @Html.DisplayNameFor(model => model.user_password)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RetypePassword)
-        </th>
+    
         <th>
             @Html.DisplayNameFor(model => model.user_gender)
         </th>
@@ -55,9 +53,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.user_password)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RetypePassword)
-            </td>
+        
             <td>
                 @Html.DisplayFor(modelItem => item.user_gender)
             </td>
@@ -83,9 +79,9 @@
                 @Html.DisplayFor(modelItem => item.user_point)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.user_account_id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.user_account_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.user_account_id })
+                @Html.ActionLink(" ", "Edit", new { id = item.user_account_id }, new { @class = "fas fa-edit btn btn-warning me-1" })
+                @Html.ActionLink(" ", "Details", new { id = item.user_account_id }, new { @class = "fas fa-eye btn btn-success me-1" })
+                @Html.ActionLink(" ", "Delete", new { id = item.user_account_id }, new { @class = "fas fa-trash-alt btn btn-danger me-1" })
             </td>
         </tr>
     }

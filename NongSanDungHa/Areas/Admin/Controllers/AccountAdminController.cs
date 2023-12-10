@@ -91,6 +91,13 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             ViewBag.Message = "Xóa Thất bại";
             return View(ad);
         }
+        public ActionResult SearchResult(int searchKey)
+        {
+            ListAdminAccount list = new ListAdminAccount();
+            List<admin_account> lstSearch = list.search(searchKey).ToList();
+            ViewBag.searchKey = searchKey;
+            return View(lstSearch);
+        }
         [HttpGet]
         public JsonResult GetData()
         {
