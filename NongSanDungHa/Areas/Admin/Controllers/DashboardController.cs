@@ -44,7 +44,14 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             ViewBag.YearlyRevenue = YearlyRevenue;
             return View();
         }
+        public JsonResult GetRevenues()
+        {
+            ListUser_Order order = new ListUser_Order();
 
+            var list = order.GetMonthlyRevenues().ToList();
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

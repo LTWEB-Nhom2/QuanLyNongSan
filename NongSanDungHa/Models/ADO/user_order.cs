@@ -286,6 +286,41 @@ namespace NongSanDungHa.Models.ADO
                 con.Close();
             }
         }
+        public List<MonthlyRevenue> GetMonthlyRevenues()
+        {
+            SqlConnection con = db.GetConnection();
+            List<MonthlyRevenue> monthlyRevenues = new List<MonthlyRevenue>();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("GetMonthlyRevenue", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        MonthlyRevenue monthlyRevenue = new MonthlyRevenue
+                        {
+                            Month = Convert.ToInt32(reader["Month"]),
+                            Revenue = Convert.ToDecimal(reader["Revenue"])
+                        };
+
+                        monthlyRevenues.Add(monthlyRevenue);
+                    }
+                }
+
+                return monthlyRevenues;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<MonthlyRevenue>();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
         public decimal GetMonthlyRevenue()
         {
             SqlConnection con = db.GetConnection();

@@ -101,40 +101,7 @@
 
     </div>
     <div class="row">
-        <div class="col-xl-3 col-lg-3">
-            <div class="card l-bg-orange-dark">
-                <div class="card-statistic-3 p-4">
-                    <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
-                    <div class="mb-4">
-                        <h5 class="card-title mb-0">Doanh thu tháng @ViewBag.before_month</h5>
-                    </div>
-                    <div class="row align-items-center mb-2 d-flex">
-                        <div class="col-8">
-                            <h2 class="d-flex align-items-center mb-0">
-                                @string.Format("{0:0,0.000}", @ViewBag.MonthlyBefore) đ
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-3">
-            <div class="card l-bg-orange-dark">
-                <div class="card-statistic-3 p-4">
-                    <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
-                    <div class="mb-4">
-                        <h5 class="card-title mb-0">Doanh thu tháng @ViewBag.current_month</h5>
-                    </div>
-                    <div class="row align-items-center mb-2 d-flex">
-                        <div class="col-8">
-                            <h2 class="d-flex align-items-center mb-0">
-                                @string.Format("{0:0,0.000}", @ViewBag.MonthlyRevenue) đ
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <div class="col-xl-3 col-lg-3">
             <div class="card l-bg-orange-dark">
                 <div class="card-statistic-3 p-4">
@@ -155,4 +122,101 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <canvas id="myChart"></canvas>
+</div>
 
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+    <script>
+
+        let myChart = document.getElementById('myChart').getContext('2d');
+        $.get("/Admin/Dashboard/GetRevenues", function (res) {
+            GetRevenues(res);
+        })
+
+        function formatMonth(month) {
+            // Format month to Vietnamese
+            const options = { month: 'long' };
+            return new Date(2000, month - 1).toLocaleString('vi-VN', options);
+        }
+
+        function formatCurrency(value) {
+            // Format value to VND
+            return value.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }).replace('₫', '.000 vnđ').trim();
+        }
+        function GetRevenues(res) {
+            Chart.defaults.global.defaultFontFamily = 'Lato';
+            Chart.defaults.global.defaultFontSize = 18;
+            Chart.defaults.global.defaultFontColor = '#777';
+            console.log(res);
+            var lstLabel = [];
+            var lstData = [];
+            $.each(res, function (index, item) {
+                lstLabel.push(formatMonth(item.Month));
+                lstData.push(item.Revenue);
+            })
+
+            let massPopChart = new Chart(myChart, {
+                type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data: {
+                    labels: lstLabel,
+                    datasets: [{
+                        label: 'Doanh Thu',
+                        data: lstData,
+                        /* backgroundColor:'#52a851',*/
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(255, 159, 64, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
+                        ],
+                        borderWidth: 1,
+                        borderColor: '#777',
+                        hoverBorderWidth: 3,
+                        hoverBorderColor: '#000'
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Doanh Thu Theo Tháng Năm 2023',
+                        fontSize: 25
+                    },
+                    legend: {
+                        display: true,
+                        position: 'right',
+                        labels: {
+                            fontColor: '#000'
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 50,
+                            right: 0,
+                            bottom: 0,
+                            top: 0
+                        }
+                    },
+                    tooltips: {
+                        enabled: true,
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                return data.datasets[tooltipItem.datasetIndex].label + ': ' + formatCurrency(tooltipItem.yLabel);
+                            
+                            }
+                        }
+                    }
+                }
+            });
+        }
+                // Global Options
+
+    </script>
+
+
+}
