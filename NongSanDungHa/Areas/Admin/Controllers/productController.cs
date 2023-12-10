@@ -68,12 +68,24 @@ namespace NongSanDungHa.Areas.Admin.Controllers
             list.update(pro);
             return RedirectToAction("Index");
         }
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id,int category_id)
+        {
+            ListProduct list = new ListProduct();
+            product pro = list.details(id,category_id).FirstOrDefault();
+            return View(pro);
+        }
+        [HttpPost]
+        public ActionResult Delete(product item)
         {
             ListProduct list = new ListProduct();
             
-            list.delete(id);
+            var rs = list.delete(item.product_id);
+            if (rs == 1)
             return RedirectToAction("Index");
+            ViewBag.KT = 0;
+            ViewBag.Message = "Dữ liệu này đang được sử dụng";
+            product pro = list.details(item.product_id, item.product_category_id).SingleOrDefault();
+            return View(pro);
         }
         public ActionResult SearchResult(int searchKey)
         {

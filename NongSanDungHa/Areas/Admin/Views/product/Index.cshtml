@@ -83,7 +83,7 @@
             <td>
                 @Html.ActionLink(" ", "Detail", new { id = item.product_id, category_id = item.product_category_id }, new { @class = "fas fa-eye btn btn-success me-1" })
                 @Html.ActionLink(" ", "Edit", new { id = item.product_id, category_id = item.product_category_id }, new { @class = "fas fa-edit btn btn-warning me-1" })
-                @Html.ActionLink(" ", "Delete", new { id = item.product_id }, new { @class = "fas fa-trash-alt btn btn-danger me-1" })
+                @Html.ActionLink(" ", "Delete", new { id = item.product_id, category_id = item.product_category_id }, new { @class = "fas fa-trash-alt btn btn-danger me-1" })
             </td>
         </tr>
     }

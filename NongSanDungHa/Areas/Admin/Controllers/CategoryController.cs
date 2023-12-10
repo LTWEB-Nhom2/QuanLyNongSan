@@ -63,9 +63,24 @@ namespace NongSanDungHa.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             ListProductCategory list = new ListProductCategory();
+            product_category cate = list.Details(id).FirstOrDefault();
+            return View(cate);
+        }
+        [HttpPost]
+        public ActionResult Delete(product_category cate)
+        {
+            ListProductCategory list = new ListProductCategory();
 
-            list.delete(id);
-            return RedirectToAction("Index");
+            var rs = list.delete(cate.product_category_id);
+            if (rs == 1)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewBag.KT = 0;
+            ViewBag.Message = "Xóa thất bại do dữ liệu đang được sử dụng";
+            product_category cate1 = list.Details(cate.product_category_id).FirstOrDefault();
+            return View(cate1);
+           
         }
         public ActionResult SearchResult(int searchKey)
         {

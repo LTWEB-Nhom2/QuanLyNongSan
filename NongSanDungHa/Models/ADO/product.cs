@@ -107,7 +107,7 @@ namespace NongSanDungHa.Models.ADO
             return list;
 
         }
-        public List<product> details(int id, int category_id)
+        public List<product> details(int id, int? category_id)
         {
             string sql;
 
@@ -150,16 +150,36 @@ namespace NongSanDungHa.Models.ADO
             cmd.Dispose();
             con.Close();
         }
-        public void delete(int id)
+        public int delete(int id)
         {
             SqlConnection con = db.GetConnection();
             con.Open();
-            string sql = "Delete from product where product_id = @id";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.Add("@id", id);
-            cmd.ExecuteNonQuery();
-            cmd.Dispose();
+            SqlCommand cmd1;
+            string kt0 = "select count(*) from product_review where product_id =" + id;
+            string kt1 = "Select count(*) from user_order_product where product_id =" + id;
+            string kt2 = "Select count(*) from product_image where product_id =" + id;
+            cmd1 = new SqlCommand(kt0, con);
+            int ktReview = (int)cmd1.ExecuteScalar();
+            cmd1 = new SqlCommand(kt1, con);
+            int ktSanPhamDH =(int)cmd1.ExecuteScalar();
+            cmd1 = new SqlCommand(kt2 , con);
+            int ktHinhAnhSP = (int)cmd1.ExecuteScalar();
+            if (ktReview == 0 && ktSanPhamDH == 0 && ktHinhAnhSP == 0)
+            {
+                string sql = "Delete from product where product_id = @id";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.Add("@id", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                con.Close();
+                return 1;
+
+               
+            }
             con.Close();
+            return 0;
+
+
         }
         public void insert(product item)
         {

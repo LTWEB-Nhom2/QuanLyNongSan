@@ -1251,6 +1251,8 @@
     <Content Include="Areas\Admin\Views\AccountAdmin\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AccountAdmin\SearchResult.cshtml" />
     <Content Include="Areas\Admin\Views\AccountUser\SearchResult.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\product\Delete.cshtml" />
     <None Include="Models\DBNongSanDungHa.dbml.layout">
       <DependentUpon>DBNongSanDungHa.dbml</DependentUpon>
     </None>

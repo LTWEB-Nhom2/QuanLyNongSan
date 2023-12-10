@@ -100,16 +100,26 @@ namespace NongSanDungHa.Models.ADO
             cmd.Dispose();
             con.Close();
         }
-        public void delete(int id)
+        public int delete(int id)
         {
+            
             SqlConnection con = db.GetConnection();
             con.Open();
-            string sql = "Delete from product_category where product_category_id = @id";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            cmd.Parameters.Add("@id", id);
-            cmd.ExecuteNonQuery();
-            cmd.Dispose();
+            SqlCommand cmd1 = new SqlCommand("select count(*) from product p where p.product_category_id ="+id, con);
+            int kt = (int)cmd1.ExecuteScalar();
+            if(kt == 0)
+            {
+                string sql = "Delete from product_category where product_category_id = @id";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.Add("@id", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                con.Close();
+                return 1;
+            }
             con.Close();
+            return 0;
+         
         }
         public void insert(product_category item)
         {
